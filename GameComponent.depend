@@ -1,0 +1,83 @@
+# depslib dependency file v1.0
+1352668732 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/main.cpp
+	<math.h>
+	<GL/glut.h>
+	<iostream>
+	"include/LevelManager.h"
+
+1352927951 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/include/LevelManager.h
+	"Item.h"
+	"ViewManager.h"
+	"Cube.h"
+	"Wall.h"
+	"Floor.h"
+
+1352669788 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/include/Item.h
+	<list>
+	"PhysicsEngine.h"
+	"Entity.h"
+
+1352556783 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/include/PhysicsEngine.h
+	<iostream>
+	<GL/glut.h>
+	<cml/cml.h>
+
+1358287441 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/include/Entity.h
+	<iostream>
+	<typeinfo>
+	<GL/glut.h>
+	<cml/cml.h>
+
+1352443019 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/include/ViewManager.h
+	"Character.h"
+
+1352974137 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/include/Character.h
+	"Item.h"
+	"Cube.h"
+	"Wall.h"
+	"Floor.h"
+
+1352670976 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/include/Cube.h
+	"Item.h"
+
+1358289057 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/include/LevelDelimiter.h
+	"Entity.h"
+
+1352671460 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/src/Cube.cpp
+	"../include/Cube.h"
+
+1352971064 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/src/Entity.cpp
+	<stdio.h>
+	"../include/Entity.h"
+
+1352669865 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/src/Item.cpp
+	"../include/Item.h"
+
+1358361725 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/src/LevelDelimiter.cpp
+	"../include/LevelDelimiter.h"
+
+1358344168 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/src/LevelManager.cpp
+	"../include/LevelManager.h"
+
+1352557601 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/src/PhysicsEngine.cpp
+	"../include/PhysicsEngine.h"
+	<stdio.h>
+
+1352814870 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/src/ViewManager.cpp
+	"../include/ViewManager.h"
+
+1358335666 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/src/Character.cpp
+	"../include/Character.h"
+
+1352978082 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/include/Wall.h
+	"LevelDelimiter.h"
+
+1358343854 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/src/Wall.cpp
+	"../include/Wall.h"
+
+1352978143 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/src/Floor.cpp
+	"../include/Floor.h"
+
+1352978108 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/include/Floor.h
+	"LevelDelimiter.h"
+
