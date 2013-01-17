@@ -86,7 +86,6 @@ void Character::movement(){
     if(colliders.size()!=0){
         for(it=colliders.begin(); it!=colliders.end(); it++){
             vector3 collider = *it;
-            cout << collider << endl;
 
             //perpendicular of collider
             collider[0] = collider[0] + collider[2];
@@ -103,9 +102,8 @@ void Character::movement(){
             cout << sinangle1 << endl;
             cout << collider << endl;
             cout << tmp2 << endl;
-            cout << collider*cosangle1 << endl;
+            cout << collider*cosangle1 << endl;*/
             //cout << tmp2 << endl;
-            cout << "------------" << endl;*/
             if((cosangle1<0.0 && moveRight) || (cosangle1>=0.0 && moveLeft)){
                 tmp3 = collider*cosangle2;
             }else{
@@ -113,13 +111,13 @@ void Character::movement(){
             }
             if((sinangle1>0.0 && moveForward) || (sinangle1<=0.0 && moveBackward))
                 tmp2 = collider*cosangle1;
-
+                //cout << tmp2 << endl;
+                //cout << "------------" << endl;
 
             //tmp2.normalize();
             //tmp2[1]=0.0;
             tmp3[1]=0.0;
         }
-        //cout << "-----" << endl;
     }else{
         tmp2 = tmp;
         tmp3 = side;
@@ -135,6 +133,8 @@ void Character::movement(){
     if(collider[2]!=0.0 && RL*collider[2]*side[2]<0.0)
         tmp3[2]=0.0;*/
 
+    //cout << tmp2 << endl;
+    //cout << "------------" << endl;
  	if(moveForward){
 		pos = pos + interval*tmp2;
 		at = pos + tmp;
@@ -166,7 +166,6 @@ void Character::movement(){
 
 std::vector<vector3> Character::collision(){
     std::vector<vector3> collider;
-
     Wall* wall = new Wall();
     Floor* fl = new Floor();
     vector3 ld;
