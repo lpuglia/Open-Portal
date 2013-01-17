@@ -74,12 +74,10 @@ void Character::specialKeyboard(int key){
 void Character::movement(){
 
     float interval = pe.idle()/100;
-    float temp;
-    vector3 tmp2;
-    vector3 tmp3;
-
     vector3 tmp = dir;
-    tmp2 = tmp;
+    vector3 tmp2 = dir;
+    vector3 tmp3 = side;
+
 	std::vector<vector3> colliders = collision();
 
     std::vector<vector3>::const_iterator it;
@@ -96,61 +94,28 @@ void Character::movement(){
 
             GLfloat cosangle1 = (tmp2[0]*collider[0]+tmp2[2]*collider[2])/(tmp2.length()*collider.length());
             GLfloat sinangle1 = (tmp2[0]*collider[2]-tmp2[2]*collider[0])/(tmp2.length()*collider.length());
-            GLfloat cosangle2 = (side[0]*collider[0]+side[2]*collider[2])/(side.length()*collider.length());
+            GLfloat cosangle2 = (tmp3[0]*collider[0]+tmp3[2]*collider[2])/(tmp3.length()*collider.length());
 
-            /*cout << cosangle1 << endl;
-            cout << sinangle1 << endl;
-            cout << collider << endl;
-            cout << tmp2 << endl;
-            cout << collider*cosangle1 << endl;*/
-            //cout << tmp2 << endl;
-            if((cosangle1<0.0 && moveRight) || (cosangle1>=0.0 && moveLeft)){
+            if((cosangle1<0.0 && moveRight) || (cosangle1>=0.0 && moveLeft))
                 tmp3 = collider*cosangle2;
-            }else{
-                tmp3 = side;
-            }
             if((sinangle1>0.0 && moveForward) || (sinangle1<=0.0 && moveBackward))
                 tmp2 = collider*cosangle1;
-                //cout << tmp2 << endl;
-                //cout << "------------" << endl;
 
-            //tmp2.normalize();
-            //tmp2[1]=0.0;
+            cout << tmp2 << endl;
+            cout << tmp3 << endl;
+            cout << collider << endl;
+            cout << "--------" << endl;
+
             tmp3[1]=0.0;
         }
-    }else{
-        tmp2 = tmp;
-        tmp3 = side;
     }
     tmp[1]=dir1;
 
-    /*if(collider[0]!=0.0 && FB*collider[0]*dir[0]<0.0)
-        tmp2[0]=0.0;
-    if(collider[2]!=0.0 && FB*collider[2]*dir[2]<0.0)
-        tmp2[2]=0.0;
-    if(collider[0]!=0.0 && RL*collider[0]*side[0]<0.0)
-        tmp3[0]=0.0;
-    if(collider[2]!=0.0 && RL*collider[2]*side[2]<0.0)
-        tmp3[2]=0.0;*/
-
-    //cout << tmp2 << endl;
-    //cout << "------------" << endl;
- 	if(moveForward){
-		pos = pos + interval*tmp2;
-		at = pos + tmp;
-	}
-	if(moveBackward){
-		pos = pos - interval*tmp2;
-		at = pos + tmp;
-	}
-	if(moveRight){
-		pos = pos - interval*tmp3;
-		at = pos + tmp;
-	}
-	if(moveLeft){
-		pos = pos + interval*tmp3;
-		at = pos + tmp;
-	}
+    if(moveForward) pos += interval*tmp2;
+	if(moveBackward) pos -= interval*tmp2;
+	if(moveRight) pos -= interval*tmp3;
+	if(moveLeft) pos += interval*tmp3;
+	at = pos + tmp;
 
     //cout << collider[1] << endl;
 	if(jump){
@@ -173,7 +138,7 @@ std::vector<vector3> Character::collision(){
     list<Entity*>::iterator p;
     for (p = entityList->begin(), p++; p!=entityList->end(); p++){
         if (typeid(**p) == typeid(*wall) || typeid(**p) == typeid(*fl)){
-            ld = ((LevelDelimiter*)(*p))->isInFront(pos,dir);
+            ld = ((LevelDelimiter*)(*p))->collision_detection(pos);
             if(ld!=zeros){
                 collider.push_back(ld);
             }

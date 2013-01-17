@@ -1,6 +1,6 @@
 #include "../include/Floor.h"
 
-vector3 Floor::isInFront(vector3 pos, vector3 dir){
+vector3 Floor::collision_detection(vector3 pos){
     vector3 dist = Floor::pos - pos;
     dist = surfacePosition - pos;
     dist[0] = Floor::dir[0]*(dist[0]);
