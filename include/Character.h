@@ -5,6 +5,7 @@
 #include "Cube.h"
 #include "Wall.h"
 #include "Floor.h"
+#include <vector>
 
 class Character: public Item
 {
@@ -35,7 +36,7 @@ class Character: public Item
         void takeEntity();
         void releaseEntity();
         void throwEntity();
-        vector3 collision();
+        std::vector<vector3> collision();
         vector3 x0;
         vector3 dist;
         vector3 precDist;

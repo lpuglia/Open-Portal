@@ -20,7 +20,6 @@ LevelDelimiter::LevelDelimiter(vector3 pos, vector3 dir, vector3 up, vector3 ver
     vertices[10]=dirMat[1]*vertex4[0]+dirMat[5]*vertex4[1]+dirMat[9]*vertex4[2]+pos[1];
     vertices[11]=dirMat[2]*vertex4[0]+dirMat[6]*vertex4[1]+dirMat[10]*vertex4[2]+pos[2];
 
-    surfacePosition = pos+dir.normalize();
     bbox= new GLfloat[24];
     for (int i=0; i<12; i++){
         bbox[i]=vertices[i];
@@ -31,11 +30,11 @@ LevelDelimiter::LevelDelimiter(vector3 pos, vector3 dir, vector3 up, vector3 ver
         bbox[12+i+2]=vertices[i+2]+dir[2];
     }
 
-    cout << "dir ---" << dir << endl;
+    /*cout << "dir ---" << dir << endl;
     for (int i=0; i<24; i++){
         cout << bbox[i] << ' ' << vertices[i%12] << endl;
     }
-    cout << endl;
+    cout << endl;*/
     colors={color[0],color[1],color[2],
             color[0],color[1],color[2],
             color[0],color[1],color[2],

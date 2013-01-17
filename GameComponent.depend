@@ -81,3 +81,86 @@
 1352978108 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/GameComponent/include/Floor.h
 	"LevelDelimiter.h"
 
+1352668732 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/main.cpp
+	<math.h>
+	<GL/glut.h>
+	<iostream>
+	"include/LevelManager.h"
+
+1352927951 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/LevelManager.h
+	"Item.h"
+	"ViewManager.h"
+	"Cube.h"
+	"Wall.h"
+	"Floor.h"
+
+1352669788 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Item.h
+	<list>
+	"PhysicsEngine.h"
+	"Entity.h"
+
+1352556783 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/PhysicsEngine.h
+	<iostream>
+	<GL/glut.h>
+	<cml/cml.h>
+
+1358287441 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Entity.h
+	<iostream>
+	<typeinfo>
+	<GL/glut.h>
+	<cml/cml.h>
+
+1352443019 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/ViewManager.h
+	"Character.h"
+
+1358413082 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Character.h
+	"Item.h"
+	"Cube.h"
+	"Wall.h"
+	"Floor.h"
+	<vector>
+
+1352670976 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Cube.h
+	"Item.h"
+
+1352978082 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Wall.h
+	"LevelDelimiter.h"
+
+1358289057 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/LevelDelimiter.h
+	"Entity.h"
+
+1352978108 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Floor.h
+	"LevelDelimiter.h"
+
+1358432478 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Character.cpp
+	"../include/Character.h"
+
+1352671460 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Cube.cpp
+	"../include/Cube.h"
+
+1352971064 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Entity.cpp
+	<stdio.h>
+	"../include/Entity.h"
+
+1358380187 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Floor.cpp
+	"../include/Floor.h"
+
+1352669865 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Item.cpp
+	"../include/Item.h"
+
+1358431791 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/LevelDelimiter.cpp
+	"../include/LevelDelimiter.h"
+
+1358433514 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/LevelManager.cpp
+	"../include/LevelManager.h"
+
+1352557601 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/PhysicsEngine.cpp
+	"../include/PhysicsEngine.h"
+	<stdio.h>
+
+1352814870 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/ViewManager.cpp
+	"../include/ViewManager.h"
+
+1358380179 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Wall.cpp
+	"../include/Wall.h"
+

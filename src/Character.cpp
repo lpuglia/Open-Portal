@@ -75,50 +75,56 @@ void Character::movement(){
 
     float interval = pe.idle()/100;
     float temp;
-
-    vector3 tmp = dir;
-    tmp[1]=dir1;
-
-	vector3 collider = collision();
-    //perpendicular of collider
-        temp = collider[0];
-        collider[0] = collider[2];
-        collider[1]=0;
-        collider[2] = -temp;
-
-
     vector3 tmp2;
     vector3 tmp3;
-    if(collider.length()!=0){
-        GLfloat cosangle1 = (dir[0]*collider[0]+dir[2]*collider[2])/(dir.length()*collider.length());
-        GLfloat sinangle1 = (dir[0]*collider[2]-dir[2]*collider[0])/(dir.length()*collider.length());
-        GLfloat cosangle2 = (side[0]*collider[0]+side[2]*collider[2])/(side.length()*collider.length());
 
-        /*cout << cosangle1 << endl;
-        cout << sinangle1 << endl;
-        cout << collider << endl;
-        cout << dir << endl;
-        //cout << tmp2 << endl;
-        cout << "------------" << endl;*/
-        if((cosangle1<0.0 && moveRight) || (cosangle1>=0.0 && moveLeft)){
-            tmp3 = collider*cosangle2;
-        }else{
-            tmp3 = side;
+    vector3 tmp = dir;
+    tmp2 = tmp;
+	std::vector<vector3> colliders = collision();
+
+    std::vector<vector3>::const_iterator it;
+    if(colliders.size()!=0){
+        for(it=colliders.begin(); it!=colliders.end(); it++){
+            vector3 collider = *it;
+            cout << collider << endl;
+
+            //perpendicular of collider
+            collider[0] = collider[0] + collider[2];
+            collider[2] = collider[0] - collider[2];
+            collider[0] = collider[0] - collider[2];
+            collider[2] = -collider[2];
+            collider[1] = 0;
+
+            GLfloat cosangle1 = (tmp2[0]*collider[0]+tmp2[2]*collider[2])/(tmp2.length()*collider.length());
+            GLfloat sinangle1 = (tmp2[0]*collider[2]-tmp2[2]*collider[0])/(tmp2.length()*collider.length());
+            GLfloat cosangle2 = (side[0]*collider[0]+side[2]*collider[2])/(side.length()*collider.length());
+
+            /*cout << cosangle1 << endl;
+            cout << sinangle1 << endl;
+            cout << collider << endl;
+            cout << tmp2 << endl;
+            cout << collider*cosangle1 << endl;
+            //cout << tmp2 << endl;
+            cout << "------------" << endl;*/
+            if((cosangle1<0.0 && moveRight) || (cosangle1>=0.0 && moveLeft)){
+                tmp3 = collider*cosangle2;
+            }else{
+                tmp3 = side;
+            }
+            if((sinangle1>0.0 && moveForward) || (sinangle1<=0.0 && moveBackward))
+                tmp2 = collider*cosangle1;
+
+
+            //tmp2.normalize();
+            //tmp2[1]=0.0;
+            tmp3[1]=0.0;
         }
-        if((sinangle1>0.0 && moveForward) || (sinangle1<=0.0 && moveBackward)){
-            tmp2 = collider*cosangle1;
-        }else{
-            tmp2 = dir;
-        }
+        //cout << "-----" << endl;
     }else{
-        tmp2 = dir;
+        tmp2 = tmp;
         tmp3 = side;
     }
-
-    //tmp2.normalize();
-    //tmp2[1]=0.0;
-    tmp3[1]=0.0;
-
+    tmp[1]=dir1;
 
     /*if(collider[0]!=0.0 && FB*collider[0]*dir[0]<0.0)
         tmp2[0]=0.0;
@@ -158,16 +164,20 @@ void Character::movement(){
 
 }
 
-vector3 Character::collision(){
-    vector3 collider = vector3(0.0,0.0,0.0);
+std::vector<vector3> Character::collision(){
+    std::vector<vector3> collider;
+
     Wall* wall = new Wall();
     Floor* fl = new Floor();
-    LevelDelimiter* ld;
+    vector3 ld;
+    vector3 zeros = vector3(0,0,0);
     list<Entity*>::iterator p;
     for (p = entityList->begin(), p++; p!=entityList->end(); p++){
         if (typeid(**p) == typeid(*wall) || typeid(**p) == typeid(*fl)){
-            ld = (LevelDelimiter*)(*p);
-            collider += ld->isInFront(pos,dir);
+            ld = ((LevelDelimiter*)(*p))->isInFront(pos,dir);
+            if(ld!=zeros){
+                collider.push_back(ld);
+            }
         }
     }
     return collider;

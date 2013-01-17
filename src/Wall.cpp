@@ -3,11 +3,11 @@
 vector3 Wall::isInFront(vector3 pos, vector3 dir){
 
     //note #10
-    vector3 gamma = vector3(pos[0] -    bbox[0], pos[1] -    bbox[1], pos[2] -    bbox[2]);
-    vector3 delta = vector3(pos[0] -    bbox[3], pos[1] -    bbox[4], pos[2] -    bbox[5]);
+    vector3 gamma = vector3(pos[0] -    bbox[0], 0, pos[2] -    bbox[2]);
+    vector3 delta = vector3(pos[0] -    bbox[3], 0, pos[2] -    bbox[5]);
     vector3 alpha = vector3(pos[0] - bbox[0+12], pos[1] - bbox[1+12], pos[2] - bbox[2+12]);
     //vector3 beta = vector3(pos[0] - bbox[3+12], pos[1] - bbox[4+12], pos[2] - bbox[5+12]);
-    vector3 eps   = vector3(pos[0] - bbox[9], pos[1] - bbox[10], pos[2] - bbox[11]);
+    vector3 eps   = vector3(0, pos[1] - bbox[10], 0);
     vector3 zeta  = alpha;
 
     /*cout << eps << endl;
@@ -33,7 +33,6 @@ vector3 Wall::isInFront(vector3 pos, vector3 dir){
     GLfloat sindelta = (Wall::dir[0]*delta[2]-Wall::dir[2]*delta[0])/(dl);
     GLfloat singamma = (Wall::dir[0]*gamma[2]-Wall::dir[2]*gamma[0])/(gamma.length());
 
-    vector3 a = vector3(1,1,1);
     //cout << cross(Wall::dir,eps) << "<<<<<<<<<<<<<" << endl;
 
     GLfloat sineps   = (Wall::dir[0]*eps[1])/(eps.length());
