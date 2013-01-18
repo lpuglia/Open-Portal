@@ -13,6 +13,7 @@ class Floor: public LevelDelimiter
         virtual ~Floor(){};
     protected:
     private:
+        void build_bounding_box();
 };
 
 #endif // FLOOR_H

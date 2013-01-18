@@ -101,12 +101,6 @@ void Character::movement(){
                 tmp3 = collider*cosangle2;
             if((sinangle1>0.0 && moveForward) || (sinangle1<=0.0 && moveBackward))
                 tmp2 = collider*cosangle1;
-
-            cout << cosangle1 << endl;
-            cout << sinangle1 << endl;
-            cout << cosangle2 << endl;
-            cout << "--------" << endl;
-
             tmp3[1]=0.0;
         }
     }

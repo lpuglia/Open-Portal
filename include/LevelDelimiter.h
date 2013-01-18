@@ -18,6 +18,7 @@ class LevelDelimiter: public Entity
         GLfloat length;
         GLfloat height;
     private:
+        virtual void build_bounding_box()=0;
         GLubyte faceIndices[12];
         GLfloat colors[12];
 };

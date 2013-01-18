@@ -26,3 +26,7 @@ vector3 Floor::collision_detection(vector3 pos){
     //cout << dist << endl;
     return vector3(0.0,0.0,0.0);
 }
+
+void Floor::build_bounding_box(){
+
+}
