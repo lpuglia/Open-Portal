@@ -46,6 +46,7 @@ void LevelManager::init(int width, int height){
 
     /*Cube Level */
     entList.push_back(new Wall(vector3(0.0,0.0,10.0),vector3(0.0,0.0,-1.0),vector3(0.0,1.0,0.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),vector3(1.0,0.0,0.0)));
+    //entList.push_back(new Wall(vector3(5.0,0.0,10.0),vector3(-1.0,0.0,-1.0),vector3(0.0,1.0,0.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),vector3(1.0,5.0,0.0)));
     entList.push_back(new Wall(vector3(0.0,0.0,-10.0),vector3(0.0,0.0,1.0),vector3(0.0,1.0,0.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),vector3(1.0,1.0,0.0)));
     entList.push_back(new Wall(vector3(10.0,0.0,0.0),vector3(-1.0,0.0,0.0),vector3(0.0,1.0,0.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),vector3(0.0,1.0,1.0)));
     entList.push_back(new Wall(vector3(-10.0,0.0,-15.0),vector3(-1.0,0.0,0.0),vector3(0.0,1.0,0.0),vector3(-5.0,0.0,0.0),vector3(5.0,0.0,0.0),vector3(5.0,10.0,0.0),vector3(-5.0,10.0,0.0),vector3(1.0,0.5,0.0)));

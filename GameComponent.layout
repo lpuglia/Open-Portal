@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="include/Character.h" open="0" top="0" tabpos="4">
+	<File name="include/Character.h" open="1" top="0" tabpos="7">
 		<Cursor position="19" topLine="0" />
 	</File>
 	<File name="include/Cube.h" open="0" top="0" tabpos="2">
@@ -10,14 +10,14 @@
 	<File name="include/Entity.h" open="0" top="0" tabpos="1">
 		<Cursor position="264" topLine="14" />
 	</File>
-	<File name="include/Floor.h" open="0" top="0" tabpos="2">
-		<Cursor position="395" topLine="0" />
+	<File name="include/Floor.h" open="1" top="0" tabpos="6">
+		<Cursor position="345" topLine="0" />
 	</File>
 	<File name="include/Item.h" open="0" top="0" tabpos="0">
-		<Cursor position="14" topLine="0" />
+		<Cursor position="14" topLine="3" />
 	</File>
 	<File name="include/LevelDelimiter.h" open="0" top="0" tabpos="5">
-		<Cursor position="573" topLine="1" />
+		<Cursor position="404" topLine="1" />
 	</File>
 	<File name="include/LevelManager.h" open="0" top="0" tabpos="5">
 		<Cursor position="141" topLine="0" />
@@ -29,13 +29,13 @@
 		<Cursor position="106" topLine="0" />
 	</File>
 	<File name="include/Wall.h" open="0" top="0" tabpos="1">
-		<Cursor position="390" topLine="0" />
+		<Cursor position="387" topLine="0" />
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="280" topLine="0" />
 	</File>
-	<File name="src/Character.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="2202" topLine="81" />
+	<File name="src/Character.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="3100" topLine="87" />
 	</File>
 	<File name="src/Cube.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="1681" topLine="36" />
@@ -44,16 +44,16 @@
 		<Cursor position="1060" topLine="16" />
 	</File>
 	<File name="src/Floor.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="345" topLine="0" />
+		<Cursor position="228" topLine="1" />
 	</File>
 	<File name="src/Item.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="392" topLine="0" />
+		<Cursor position="249" topLine="0" />
 	</File>
 	<File name="src/LevelDelimiter.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="38" topLine="0" />
+		<Cursor position="1612" topLine="12" />
 	</File>
-	<File name="src/LevelManager.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="4095" topLine="37" />
+	<File name="src/LevelManager.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="2587" topLine="45" />
 	</File>
 	<File name="src/PhysicsEngine.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="37" topLine="0" />
@@ -62,6 +62,6 @@
 		<Cursor position="695" topLine="5" />
 	</File>
 	<File name="src/Wall.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="588" topLine="0" />
+		<Cursor position="446" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

@@ -95,15 +95,16 @@ void Character::movement(){
             GLfloat cosangle1 = (tmp2[0]*collider[0]+tmp2[2]*collider[2])/(tmp2.length()*collider.length());
             GLfloat sinangle1 = (tmp2[0]*collider[2]-tmp2[2]*collider[0])/(tmp2.length()*collider.length());
             GLfloat cosangle2 = (tmp3[0]*collider[0]+tmp3[2]*collider[2])/(tmp3.length()*collider.length());
+            GLfloat sinangle2 = (tmp3[0]*collider[2]-tmp3[2]*collider[0])/(tmp3.length()*collider.length());
 
-            if((cosangle1<0.0 && moveRight) || (cosangle1>=0.0 && moveLeft))
+            if((sinangle2<0.0 && moveRight) || (sinangle2>=0.0 && moveLeft))
                 tmp3 = collider*cosangle2;
             if((sinangle1>0.0 && moveForward) || (sinangle1<=0.0 && moveBackward))
                 tmp2 = collider*cosangle1;
 
-            cout << tmp2 << endl;
-            cout << tmp3 << endl;
-            cout << collider << endl;
+            cout << cosangle1 << endl;
+            cout << sinangle1 << endl;
+            cout << cosangle2 << endl;
             cout << "--------" << endl;
 
             tmp3[1]=0.0;
