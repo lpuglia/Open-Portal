@@ -37,11 +37,11 @@ class Character: public Item
         void takeEntity();
         void releaseEntity();
         void throwEntity();
-        std::pair<std::vector<vector3>,std::vector<Floor> > collision();
+        std::pair<std::vector<vector3>,std::vector<Floor*> > collision();
         vector3 dist;
         vector3 precDist;
         Bound bound;
-        Floor actual_floor;
+        Floor* actual_floor;
 };
 
 #endif // CHARACTER_H

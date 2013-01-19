@@ -22,6 +22,7 @@ void Wall::build_bounding_box(){
 }
 
 vector3 Wall::collision_detection(vector3 pos){
+    ///OPTIMIZE
     //note #10
     vector3 gamma = vector3(pos[0] - bbox[0], 0, pos[2] - bbox[2]);
     vector3 delta = vector3(pos[0] - bbox[3], 0, pos[2] - bbox[5]);

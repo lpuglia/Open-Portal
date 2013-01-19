@@ -7,7 +7,7 @@ Entity::Entity(vector3 pos, GLfloat angle){
 }
 
 Entity::Entity(vector3 pos, vector3 dir, vector3 up){
-    Entity::pos = pos+vector3(0.0,0.02,0.0);
+    Entity::pos = pos;//+vector3(0.0,0.02,0.0);
     Entity::dir = dir;
     Entity::up = up;
     dirMat[12]=0; dirMat[13]=0; dirMat[14]=0;
