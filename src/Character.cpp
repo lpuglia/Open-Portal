@@ -1,7 +1,7 @@
 #include "../include/Character.h"
 
 Character::Character(vector3 pos, GLfloat mass, EntityList *entList)
-         :Item(pos,vector3(0.0,0.0,-1.0), mass, vector3(0.0,700.0,0.0)*(1/mass)*0.5, entList)
+         :Item(pos,vector3(0.0,0.0,-1.0), mass, vector3(0.0,400.0,0.0)*(1/mass)*0.5, entList)
 {
     releaseForce = vector3(0.0,5.0,0.0);
     shotForce = 30.0;
@@ -38,7 +38,6 @@ void Character::keyboard(unsigned char key)
             if(!jump){
                 jump = true;
                 t0 = glutGet(GLUT_ELAPSED_TIME);
-                x0 = pos;
             }
             break;
         default:
@@ -80,7 +79,7 @@ void Character::movement(){
 
 	std::pair<std::vector<vector3>,std::vector<Floor> > colliders = collision();
 
-    //collision response
+    //wall-collision response
     std::vector<vector3>::const_iterator it;
     for(it=colliders.first.begin(); it!=colliders.first.end(); it++){
         vector3 collider = *it;
@@ -107,25 +106,32 @@ void Character::movement(){
     tmp3[1]=0.0;
     tmp[1]=dir1;
 
+    //find active floor
+    std::vector<Floor>::const_iterator its = colliders.second.begin();
+    Floor below_floor=*its;
+    GLfloat below_height = below_floor.get_height(pos);
+    for(its++; its!=colliders.second.end(); its++){
+        Floor fl = *its;
+        GLfloat floor_height = fl.get_height(pos);
+        if(floor_height>=pos[1] && floor_height<=below_height){
+            below_floor=fl;
+            below_height=floor_height;
+        }
+    }
+
+    //jump reaction and landing
 	if(jump){
         pos = pe.getProjectileMotion(pos, v0, t0);
-        if(pos[1]<x0[1]){
-            pos[1]=0.02;
+        if(pos[1]<=below_height){
             jump=false;
+            pos[1]=below_height;
         }
         at[1]=pos[1]+dir1;
 	}else{
-        //collision response
-        std::vector<Floor>::const_iterator its;
-        for(its=colliders.second.begin(); its!=colliders.second.end(); its++){
-            Floor fl = *its;
-            cout << tmp2 << endl;
-            tmp2 = tmp2 - dot(tmp2,fl.getDir())*fl.getDir(); //vector projection
-            tmp3 = tmp3 - dot(tmp3,fl.getDir())*fl.getDir(); //vector projection
-            //cout << tmp2 << endl;
-            //cout << "--------" << endl;
-            pos[1] = fl.get_height(pos);
-        }
+        //floor-collision response
+        tmp2 = tmp2 - dot(tmp2,below_floor.getDir())*below_floor.getDir(); //vector projection
+        tmp3 = tmp3 - dot(tmp3,below_floor.getDir())*below_floor.getDir(); //vector projection
+        pos[1] = below_height;
 	}
 
     if(moveForward) pos += interval*tmp2;
