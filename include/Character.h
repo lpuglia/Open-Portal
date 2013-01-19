@@ -23,6 +23,7 @@ class Character: public Item
         virtual void mouseMotion(int x, int y){};
         virtual void look(){};
         Entity* takenEntity;
+        void init();
 
     protected:
         vector3 releaseForce;
@@ -37,10 +38,10 @@ class Character: public Item
         void releaseEntity();
         void throwEntity();
         std::pair<std::vector<vector3>,std::vector<Floor> > collision();
-        vector3 x0;
         vector3 dist;
         vector3 precDist;
         Bound bound;
+        Floor actual_floor;
 };
 
 #endif // CHARACTER_H

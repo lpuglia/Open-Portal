@@ -21,7 +21,7 @@ void LevelManager::init(int width, int height){
     LevelManager::width=width;
     LevelManager::height=height;
 
-    he = new ViewManager(vector3(1.0,0.0,5.0), 1.80, width, height, &entList);
+    he = new ViewManager(vector3(1.0,20.0,5.0), 1.80, width, height, &entList);
     entList.push_back(he);
 
     ///TODO "LOAD LEVEL ELEMENTS"
@@ -58,6 +58,8 @@ void LevelManager::init(int width, int height){
     entList.push_back(new Floor(vector3(0.0,0.0,0.0),vector3(0.0,1.0,0.0),vector3(1.0,0.0,0.0),vector3(-10.0,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),vector3(0.0,1.0,0.0)));
     entList.push_back(new Floor(vector3(-20.0,-5.0,0.0),vector3(0.0,1.0,0.5),vector3(1.0,0.0,0.0),vector3(-10.0,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),vector3(0.5,1.0,0.5)));
 
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    he->init();
 }
 
 void LevelManager::reshape(int w, int h){
