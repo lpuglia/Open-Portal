@@ -1,7 +1,7 @@
 #include "../include/Character.h"
 
 Character::Character(vector3 pos, GLfloat mass, EntityList *entList)
-         :Item(pos,vector3(0.0,0.0,-1.0), mass, vector3(0.0,300.0,0.0)*(1/mass)*0.5, entList)
+         :Item(pos,vector3(0.0,0.0,-1.0), mass, vector3(0.0,700.0,0.0)*(1/mass)*0.5, entList)
 {
     releaseForce = vector3(0.0,5.0,0.0);
     shotForce = 30.0;
@@ -107,25 +107,6 @@ void Character::movement(){
     tmp3[1]=0.0;
     tmp[1]=dir1;
 
-    //collision response
-    std::vector<Floor>::const_iterator its;
-    for(its=colliders.second.begin(); its!=colliders.second.end(); its++){
-        Floor fl = *its;
-        //cout << tmp2 << endl;
-        tmp2 = tmp2 - dot(tmp2,fl.getDir())*fl.getDir(); //vector projection
-        tmp3 = tmp3 - dot(tmp3,fl.getDir())*fl.getDir(); //vector projection
-        //cout << tmp2 << endl;
-        //cout << "--------" << endl;
-        pos[1] = fl.get_height(pos);
-    }
-
-    if(moveForward) pos += interval*tmp2;
-	if(moveBackward) pos -= interval*tmp2;
-	if(moveRight) pos -= interval*tmp3;
-	if(moveLeft) pos += interval*tmp3;
-	at = pos + tmp;
-
-    //cout << collider[1] << endl;
 	if(jump){
         pos = pe.getProjectileMotion(pos, v0, t0);
         if(pos[1]<x0[1]){
@@ -133,7 +114,26 @@ void Character::movement(){
             jump=false;
         }
         at[1]=pos[1]+dir1;
+	}else{
+        //collision response
+        std::vector<Floor>::const_iterator its;
+        for(its=colliders.second.begin(); its!=colliders.second.end(); its++){
+            Floor fl = *its;
+            cout << tmp2 << endl;
+            tmp2 = tmp2 - dot(tmp2,fl.getDir())*fl.getDir(); //vector projection
+            tmp3 = tmp3 - dot(tmp3,fl.getDir())*fl.getDir(); //vector projection
+            //cout << tmp2 << endl;
+            //cout << "--------" << endl;
+            pos[1] = fl.get_height(pos);
+        }
 	}
+
+    if(moveForward) pos += interval*tmp2;
+	if(moveBackward) pos -= interval*tmp2;
+	if(moveRight) pos -= interval*tmp3;
+	if(moveLeft) pos += interval*tmp3;
+	at = pos + tmp;
+    //cout << collider[1] << endl;
 
 }
 

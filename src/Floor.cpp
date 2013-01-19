@@ -30,11 +30,11 @@ vector3 Floor::collision_detection(vector3 pos){
 
     GLfloat dl = delta.length();
     GLfloat gl = gamma.length();
-    GLfloat sindelta = (dir[1]*delta[2]-dir[2]*delta[1])/(dl);
-    GLfloat singamma = (dir[1]*gamma[2]-dir[2]*gamma[1])/(gl);
+    GLfloat sindelta = (delta[2])/(dl);//GLfloat sindelta = (dir[1]*delta[2]-dir[2]*delta[1])/(dl);
+    GLfloat singamma = (gamma[2])/(gl);//GLfloat singamma = (dir[1]*gamma[2]-dir[2]*gamma[1])/(gl);
 
-    GLfloat sinalpha = (dir[0]*delta[1]-dir[1]*delta[0])/(dl);
-    GLfloat sinbeta = (dir[0]*gamma[1]-dir[1]*gamma[0])/(gl);
+    GLfloat sinalpha = (-delta[0])/(dl);//GLfloat sinalpha = (dir[0]*delta[1]-dir[1]*delta[0])/(dl);
+    GLfloat sinbeta = (-gamma[0])/(gl);//GLfloat sinbeta = (dir[0]*gamma[1]-dir[1]*gamma[0])/(gl);
 
     /*cout << signbit(sindelta) << " " << signbit(singamma) << endl;
     cout << signbit(sinalpha) << " " << signbit(sinbeta) << endl;
