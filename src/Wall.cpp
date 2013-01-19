@@ -9,48 +9,19 @@ Wall::Wall(vector3 pos, vector3 dir, vector3 vertex1, vector3 vertex2, vector3 v
 void Wall::build_bounding_box(){
     vector3 perp = vector3(-dir[2],dir[1],dir[0]);
     bbox= new GLfloat[24];
-    bbox[0]=vertices[0]+perp[0];
-    bbox[1]=vertices[1]+perp[1];
-    bbox[2]=vertices[2]+perp[2];
 
-    bbox[3]=vertices[3]-perp[0];
-    bbox[4]=vertices[4]-perp[1];
-    bbox[5]=vertices[5]-perp[2];
-
-    bbox[6]=vertices[6]+perp[0];
-    bbox[7]=vertices[7]+perp[1];
-    bbox[8]=vertices[8]+perp[2];
-
-    bbox[9]=vertices[9]-perp[0];
-    bbox[10]=vertices[10]-perp[1];
-    bbox[11]=vertices[11]-perp[2];
-
-
-    bbox[12]=vertices[0]+dir[0]+perp[0];
-    bbox[13]=vertices[1]+dir[1]+perp[1];
-    bbox[14]=vertices[2]+dir[2]+perp[2];
-
-    bbox[15]=vertices[3]+dir[0]-perp[0];
-    bbox[16]=vertices[4]+dir[1]-perp[1];
-    bbox[17]=vertices[5]+dir[2]-perp[2];
-
-    bbox[18]=vertices[6]+dir[0]+perp[0];
-    bbox[19]=vertices[7]+dir[1]+perp[1];
-    bbox[20]=vertices[8]+dir[2]+perp[2];
-
-    bbox[21]=vertices[9]+dir[0]-perp[0];
-    bbox[22]=vertices[10]+dir[1]-perp[1];
-    bbox[23]=vertices[11]+dir[2]-perp[2];
-
-    /*cout << "dir ---" << dir << endl;
-    for (int i=0; i<24; i++){
-        cout << bbox[i] << ' ' << vertices[i%12] << endl;
+    int sign=1;
+    int flag=0;
+    for(int i=0; i<24; i+=3){
+        if(i==12) flag=1;
+        bbox[i+0]=vertices[(i+0)%12]+flag*dir[0]+sign*perp[0];
+        bbox[i+1]=vertices[(i+1)%12]+flag*dir[1]+sign*perp[1];
+        bbox[i+2]=vertices[(i+2)%12]+flag*dir[2]+sign*perp[2];
+        sign = -sign;
     }
-    cout << endl;*/
 }
 
 vector3 Wall::collision_detection(vector3 pos){
-
     //note #10
     vector3 gamma = vector3(pos[0] - bbox[0], 0, pos[2] - bbox[2]);
     vector3 delta = vector3(pos[0] - bbox[3], 0, pos[2] - bbox[5]);

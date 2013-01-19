@@ -1,7 +1,7 @@
 #include "../include/Character.h"
 
 Character::Character(vector3 pos, GLfloat mass, EntityList *entList)
-         :Item(pos,vector3(0.0,0.0,-1.0), mass, vector3(0.0,700.0,0.0)*(1/mass)*0.5, entList)
+         :Item(pos,vector3(0.0,0.0,-1.0), mass, vector3(0.0,300.0,0.0)*(1/mass)*0.5, entList)
 {
     releaseForce = vector3(0.0,5.0,0.0);
     shotForce = 30.0;
@@ -78,33 +78,46 @@ void Character::movement(){
     vector3 tmp2 = dir;
     vector3 tmp3 = side;
 
-	std::vector<vector3> colliders = collision();
+	std::pair<std::vector<vector3>,std::vector<Floor> > colliders = collision();
 
+    //collision response
     std::vector<vector3>::const_iterator it;
-    if(colliders.size()!=0){
-        for(it=colliders.begin(); it!=colliders.end(); it++){
-            vector3 collider = *it;
+    for(it=colliders.first.begin(); it!=colliders.first.end(); it++){
+        vector3 collider = *it;
 
-            //perpendicular of collider
-            collider[0] = collider[0] + collider[2];
-            collider[2] = collider[0] - collider[2];
-            collider[0] = collider[0] - collider[2];
-            collider[2] = -collider[2];
-            collider[1] = 0;
+        //perpendicular of collider
+        collider[0] = collider[0] + collider[2];
+        collider[2] = collider[0] - collider[2];
+        collider[0] = collider[0] - collider[2];
+        collider[2] = -collider[2];
+        collider[1] = 0;
 
-            GLfloat cosangle1 = (tmp2[0]*collider[0]+tmp2[2]*collider[2])/(tmp2.length()*collider.length());
-            GLfloat sinangle1 = (tmp2[0]*collider[2]-tmp2[2]*collider[0])/(tmp2.length()*collider.length());
-            GLfloat cosangle2 = (tmp3[0]*collider[0]+tmp3[2]*collider[2])/(tmp3.length()*collider.length());
-            GLfloat sinangle2 = (tmp3[0]*collider[2]-tmp3[2]*collider[0])/(tmp3.length()*collider.length());
+        GLfloat t2l = tmp2.length();
+        GLfloat t3l = tmp3.length();
+        GLfloat cosangle1 = (tmp2[0]*collider[0]+tmp2[2]*collider[2])/(t2l);
+        GLfloat sinangle1 = (tmp2[0]*collider[2]-tmp2[2]*collider[0])/(t2l);
+        GLfloat cosangle2 = (tmp3[0]*collider[0]+tmp3[2]*collider[2])/(t3l);
+        GLfloat sinangle2 = (tmp3[0]*collider[2]-tmp3[2]*collider[0])/(t3l);
 
-            if((sinangle2<0.0 && moveRight) || (sinangle2>=0.0 && moveLeft))
-                tmp3 = collider*cosangle2;
-            if((sinangle1>0.0 && moveForward) || (sinangle1<=0.0 && moveBackward))
-                tmp2 = collider*cosangle1;
-            tmp3[1]=0.0;
-        }
+        if((sinangle2<0.0 && moveRight) || (sinangle2>=0.0 && moveLeft))
+            tmp3 = collider*cosangle2;
+        if((sinangle1>0.0 && moveForward) || (sinangle1<=0.0 && moveBackward))
+            tmp2 = collider*cosangle1;
     }
+    tmp3[1]=0.0;
     tmp[1]=dir1;
+
+    //collision response
+    std::vector<Floor>::const_iterator its;
+    for(its=colliders.second.begin(); its!=colliders.second.end(); its++){
+        Floor fl = *its;
+        //cout << tmp2 << endl;
+        tmp2 = tmp2 - dot(tmp2,fl.getDir())*fl.getDir(); //vector projection
+        tmp3 = tmp3 - dot(tmp3,fl.getDir())*fl.getDir(); //vector projection
+        //cout << tmp2 << endl;
+        //cout << "--------" << endl;
+        pos[1] = fl.get_height(pos);
+    }
 
     if(moveForward) pos += interval*tmp2;
 	if(moveBackward) pos -= interval*tmp2;
@@ -124,19 +137,24 @@ void Character::movement(){
 
 }
 
-std::vector<vector3> Character::collision(){
-    std::vector<vector3> collider;
-    Wall* wall = new Wall();
-    Floor* fl = new Floor();
+std::pair<std::vector<vector3>,std::vector<Floor> > Character::collision(){
+    std::pair<std::vector<vector3>,std::vector<Floor> > collider;
+    collider.first = std::vector<vector3>();
+    collider.second = std::vector<Floor>();
+
     vector3 ld;
     vector3 zeros = vector3(0,0,0);
     list<Entity*>::iterator p;
     for (p = entityList->begin(), p++; p!=entityList->end(); p++){
-        if (typeid(**p) == typeid(*wall) || typeid(**p) == typeid(*fl)){
-            ld = ((LevelDelimiter*)(*p))->collision_detection(pos);
-            if(ld!=zeros){
-                collider.push_back(ld);
-            }
+        if (Wall* wall = dynamic_cast<Wall*>(*p)) {
+            ld = wall->collision_detection(pos);
+            if(ld!=zeros)
+                collider.first.push_back(ld);
+        }
+        else if (Floor* floor = dynamic_cast<Floor*>(*p)) {
+            ld = floor->collision_detection(pos);
+            if(ld!=zeros)
+                collider.second.push_back(*floor);
         }
     }
     return collider;

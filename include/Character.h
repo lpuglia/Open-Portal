@@ -36,7 +36,7 @@ class Character: public Item
         void takeEntity();
         void releaseEntity();
         void throwEntity();
-        std::vector<vector3> collision();
+        std::pair<std::vector<vector3>,std::vector<Floor> > collision();
         vector3 x0;
         vector3 dist;
         vector3 precDist;

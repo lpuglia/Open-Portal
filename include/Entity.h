@@ -21,6 +21,7 @@ class Entity
         void setPos(vector3 pos);
         GLfloat* getBBox();
         void setBBox(GLfloat* bbox);
+        vector3 getDir(){ return dir; };
         void updateDirMat();
         virtual void drawEntity()=0;
         virtual ~Entity() {};
