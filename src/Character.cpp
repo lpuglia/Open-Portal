@@ -125,18 +125,22 @@ void Character::movement(){
     tmp3[1]=0.0;
     tmp[1]=dir1;
 
-    //find active floor
-    std::vector<Floor*>::iterator its = colliders.second.begin();
-    Floor* below_floor=*its;
-    GLfloat below_height = below_floor->get_height(pos);
-    for(its++; its!=colliders.second.end(); its++){
+    //find below floor
+    std::vector<Floor*>::iterator its;
+    Floor* below_floor;
+    GLfloat below_height=100.0;
+    //cout << pos[1] << " " << below_height <<endl;
+    for(its=colliders.second.begin(); its!=colliders.second.end(); its++){
         Floor* fl = *its;
         GLfloat floor_height = fl->get_height(pos);
-        if(floor_height>=pos[1] && floor_height<=below_height){
+        cout << pos[1] << " " << floor_height << " " << below_height << endl;
+        if(floor_height-1.0<=pos[1] && floor_height<=below_height){
+            cout << "ok" << endl;
             below_floor=fl;
             below_height=floor_height;
         }
     }
+    //cout << "........." << endl;
 
     //jump reaction and landing
 	if(jump){
@@ -145,18 +149,20 @@ void Character::movement(){
             jump=false;
             pos[1]=below_height;
             v0 = vector3(0.0,0.0,0.0);
+            cout << pos[1] << endl;
         }
         at[1]=pos[1]+dir1;
 	}else{
         //floor-collision response
-        tmp2 = tmp2 - dot(tmp2,below_floor->getDir())*below_floor->getDir(); //vector projection
-        tmp3 = tmp3 - dot(tmp3,below_floor->getDir())*below_floor->getDir(); //vector projection
-
+        //tmp2 = tmp2 - dot(tmp2,below_floor->getDir())*below_floor->getDir(); //vector projection
         //cout << actual_floor << " " << below_floor << endl;
         if(actual_floor != below_floor){ //falling situation
+            //cout << "ok" << endl;
             actual_floor = below_floor;
             jump=true;
             t0 = glutGet(GLUT_ELAPSED_TIME);
+        }else{
+            pos[1]=below_height;
         }
     }
 

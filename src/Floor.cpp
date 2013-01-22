@@ -48,5 +48,5 @@ vector3 Floor::collision_detection(vector3 pos){
 }
 
 GLfloat Floor::get_height(vector3 pos){
-    return -((dir[0]*pos[0]+dir[2]*pos[2]-const_term)/dir[1]);
+    return ((dir[0]*pos[0]+dir[2]*pos[2]-const_term)/-dir[1]);
 }
