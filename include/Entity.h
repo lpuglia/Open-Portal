@@ -1,6 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include <stdio.h>
 #include <iostream>
 #include <typeinfo>
 #include <GL/glut.h>

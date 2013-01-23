@@ -7,6 +7,7 @@ Floor::Floor(vector3 pos, vector3 dir, vector3 up, vector3 vertex1, vector3 vert
     //build_bounding_box();
     const_term = dir[0]*vertices[0]+dir[1]*vertices[1]+dir[2]*vertices[2];
     cout << const_term << endl;
+    LoadTextureRAW("texture.raw",true);
 }
 
 void Floor::build_bounding_box(){
@@ -49,4 +50,50 @@ vector3 Floor::collision_detection(vector3 pos){
 
 GLfloat Floor::get_height(vector3 pos){
     return ((dir[0]*pos[0]+dir[2]*pos[2]-const_term)/-dir[1]);
+}
+
+GLuint Floor::LoadTextureRAW(const char* filename, bool wrap) {
+  GLuint texture;
+  int width, height;
+  char * data;
+  FILE * file;
+
+  // open texture data
+  file = fopen(filename, "rb");
+  if (file == NULL) return 0;
+
+  // allocate buffer
+  width  = 128;
+  height = 128;
+  data = (char*)malloc(width*height*3);
+
+  // read texture data
+  fread(data, width*height*3, 1, file);
+  fclose(file);
+
+  // allocate a texture name
+  glGenTextures(1, &texture);
+
+  // select our current texture
+  glBindTexture(GL_TEXTURE_2D, texture);
+
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+
+    glBegin(GL_QUADS);
+        glTexCoord3f(0.0, 0.0, 0.0); glVertex3f(-10.0, 0.0, 0.0);
+        glTexCoord3f(0.0, 1.0, 0.0); glVertex3f(10.0, 0.0, 0.0);
+        glTexCoord3f(1.0, 1.0, 0.0); glVertex3f(10.0, 10.0, 0.0);
+        glTexCoord3f(1.0, 0.0, 0.0); glVertex3f(-10.0, 10.0, 0.0);
+    glEnd();
+
+
+  // build our texture MIP maps
+  //gluBuild2DMipmaps( GL_TEXTURE_2D, 3, width, height, GL_RGB, GL_UNSIGNED_BYTE,data);
+
+  // free buffer
+  free(data);
+
+  return texture;
 }

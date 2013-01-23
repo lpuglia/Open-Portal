@@ -4,8 +4,13 @@ Character* LevelManager::he;
 EntityList LevelManager::entList;
 int LevelManager::width;
 int LevelManager::height;
+int LevelManager::frameCount=0;
+int LevelManager::currentTime=0;
+int LevelManager::previousTime=0;
+int LevelManager::fps=0;
 
 void LevelManager::init(int width, int height){
+
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
@@ -57,6 +62,7 @@ void LevelManager::init(int width, int height){
     entList.push_back(new Wall(vector3(-30.0,0.0,0.0),vector3(1.0,0.0,0.0),vector3(-30.0,-30.0,0.0),vector3(30.0,-30.0,0.0),vector3(30.0,10.0,0.0),vector3(-30.0,10.0,0.0),vector3(0.0,0.0,1.0)));
     entList.push_back(new Wall(vector3(-10.0,-10.0,0.0),vector3(-1.0,0.0,0.0),vector3(-10.0,-20.0,0.0),vector3(10.0,-20.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),vector3(0.5,0.6,1.0)));
 
+    entList.push_back(new Floor(vector3(0.0,0.5,0.0),vector3(0.0,1.0,0.0),vector3(1.0,0.0,0.0),vector3(-2.0,-2.0,0.0),vector3(2.0,-2.0,0.0),vector3(2.0,2.0,0.0),vector3(-2.0,2.0,0.0),vector3(0.0,0.0,0.0)));
     entList.push_back(new Floor(vector3(0.0,0.0,0.0),vector3(0.0,1.0,0.0),vector3(1.0,0.0,0.0),vector3(-10.0,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),vector3(0.0,1.0,0.0)));
     entList.push_back(new Floor(vector3(-20.0,-5.0,0.0),vector3(0.0,1.0,0.5),vector3(1.0,0.0,0.0),vector3(-11.185,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-11.185,10.0,0.0),vector3(0.4,0.6,0.9)));
     entList.push_back(new Floor(vector3(-20.0,0.0,-15.0),vector3(0.0,1.0,0.0),vector3(1.0,0.0,0.0),vector3(-5,-10.0,0.0),vector3(5.0,-10.0,0.0),vector3(5.0,10.0,0.0),vector3(-5.0,10.0,0.0),vector3(0.5,1.0,0.5)));
@@ -77,6 +83,7 @@ void LevelManager::reshape(int w, int h){
 }
 
 void LevelManager::idle(void){
+    calculateFPS();
     list<Entity*>::iterator p;
     Bound* bound = new Bound();
     for (p = entList.begin(); p!=entList.end(); p++){
@@ -120,4 +127,23 @@ void LevelManager::display(){
         glPopMatrix();
     }
 	glutSwapBuffers();
+}
+
+void LevelManager::calculateFPS(){
+    //  Increase frame count
+    LevelManager::frameCount++;
+    //  Get the number of milliseconds since glutInit called
+    //  (or first call to glutGet(GLUT ELAPSED TIME)).
+    LevelManager::currentTime = glutGet(GLUT_ELAPSED_TIME);
+
+    //  Calculate time passed
+    int timeInterval = LevelManager::currentTime - LevelManager::previousTime;
+
+    if(timeInterval > 1000){
+        LevelManager::fps = LevelManager::frameCount / (timeInterval / 1000.0f);
+        LevelManager::previousTime = LevelManager::currentTime;
+        LevelManager::frameCount = 0;
+        printf("\r%d FPS",LevelManager::fps);
+        fflush(stdout);
+    }
 }

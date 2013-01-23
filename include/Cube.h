@@ -16,7 +16,7 @@ class Cube : public Item
         virtual ~Cube(){};
     protected:
     private:
-        bool collide;
+        bool floor_collide, wall_collide;
         std::pair<std::vector<vector3>,std::vector<Floor*> > collision();
         static GLfloat vertices[24];
         static GLfloat colors[24];

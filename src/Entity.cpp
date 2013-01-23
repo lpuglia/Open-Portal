@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "../include/Entity.h"
 
 Entity::Entity(vector3 pos, GLfloat angle){

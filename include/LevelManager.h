@@ -26,9 +26,10 @@ class LevelManager
     protected:
 
     private:
+        static int width, height, frameCount, currentTime, previousTime, fps;
         static Character* he;
         static EntityList entList;
-        static int width, height;
+        static void calculateFPS();
 };
 
 #endif // LEVELMANAGER_H

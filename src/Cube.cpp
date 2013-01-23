@@ -30,7 +30,8 @@ void Cube::initialize(){
 Cube::Cube(vector3 pos, vector3 dir, EntityList *entList)
     :Item(pos, dir, 5.0, vector3(0.0,0.0,0.0),entList)
 {
-    collide=false;
+    floor_collide=false;
+    wall_collide=false;
     initialize();
 }
 
@@ -44,6 +45,7 @@ void Cube::drawEntity(){
 
 void Cube::movement(){
 	std::pair<std::vector<vector3>,std::vector<Floor*> > colliders = collision();
+
     //find below floor
     std::vector<Floor*>::iterator its;
     Floor* below_floor;
@@ -59,13 +61,19 @@ void Cube::movement(){
     }
 
     //colide reaction and landing
-	if(!collide){
+	if(!floor_collide){
+        if(colliders.first.size()!=0 && !wall_collide){
+            setCollide(false);
+            wall_collide=true;
+            setV0(vector3(0.0,0.0,0.0));
+        }
         pos = pe.getProjectileMotion(pos, v0, t0);
         if(pos[1]<=below_height){
             up =  below_floor->getDir();
             dir = below_floor->getUp();
             updateDirMat();
-            collide=true;
+            floor_collide=true;
+            wall_collide=false;
             pos[1]=below_floor->get_height(pos);
         }
 	}
@@ -107,11 +115,10 @@ vector3 Cube::collision_detection(vector3 pos){
     return vector3(0.0,0.0,0.0);
 }
 
-
 void Cube::setCollide(bool collide){
-    Cube::collide=collide;
+    floor_collide=collide;
     t0 = glutGet(GLUT_ELAPSED_TIME);
 }
 bool Cube::getCollide(){
-    return collide;
+    return floor_collide;
 }

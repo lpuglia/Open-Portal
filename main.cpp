@@ -15,6 +15,7 @@ int main(int argc, char **argv){
 	glutInitWindowPosition(200, 100);
 	glutCreateWindow("Camera Manager");
 	glEnable(GL_CULL_FACE);
+	glEnable(GL_TEXTURE_2D);
 
     LevelManager::init(width,height);
 
