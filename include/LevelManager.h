@@ -6,6 +6,7 @@
 #include "Cube.h"
 #include "Wall.h"
 #include "Floor.h"
+#include "Geometry.h"
 
 using namespace std;
 

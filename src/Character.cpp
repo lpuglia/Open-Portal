@@ -128,14 +128,12 @@ void Character::movement(){
     //find below floor
     std::vector<Floor*>::iterator its;
     Floor* below_floor;
-    GLfloat below_height=100.0;
-    //cout << pos[1] << " " << below_height <<endl;
+    GLfloat below_height=-100.0;
     for(its=colliders.second.begin(); its!=colliders.second.end(); its++){
         Floor* fl = *its;
         GLfloat floor_height = fl->get_height(pos);
-        cout << pos[1] << " " << floor_height << " " << below_height << endl;
-        if(floor_height-1.0<=pos[1] && floor_height<=below_height){
-            cout << "ok" << endl;
+        //cout << pos[1] << " " << floor_height << " " << below_height << endl;
+        if(floor_height-1.0<=pos[1] && floor_height>=below_height){
             below_floor=fl;
             below_height=floor_height;
         }
@@ -155,6 +153,7 @@ void Character::movement(){
 	}else{
         //floor-collision response
         //tmp2 = tmp2 - dot(tmp2,below_floor->getDir())*below_floor->getDir(); //vector projection
+        //tmp3 = tmp3 - dot(tmp3,below_floor->getDir())*below_floor->getDir(); //vector projection
         //cout << actual_floor << " " << below_floor << endl;
         if(actual_floor != below_floor){ //falling situation
             //cout << "ok" << endl;
