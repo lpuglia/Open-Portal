@@ -147,7 +147,6 @@ void Character::movement(){
             jump=false;
             pos[1]=below_height;
             v0 = vector3(0.0,0.0,0.0);
-            cout << pos[1] << endl;
         }
         at[1]=pos[1]+dir1;
 	}else{

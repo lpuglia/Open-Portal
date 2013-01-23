@@ -32,6 +32,10 @@ void Entity::setPos(vector3 pos){
     Entity::pos = pos;
 }
 
+vector3 Entity::getUp(){
+    return up;
+}
+
 GLfloat* Entity::getBBox(){
     return bbox;
 }

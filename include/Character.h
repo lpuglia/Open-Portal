@@ -3,9 +3,6 @@
 
 #include "Item.h"
 #include "Cube.h"
-#include "Wall.h"
-#include "Floor.h"
-#include <vector>
 
 class Character: public Item
 {
@@ -41,7 +38,6 @@ class Character: public Item
         vector3 dist;
         vector3 precDist;
         Bound bound;
-        Floor* actual_floor;
 };
 
 #endif // CHARACTER_H

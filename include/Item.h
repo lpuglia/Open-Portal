@@ -4,6 +4,9 @@
 #include <list>
 #include "PhysicsEngine.h"
 #include "Entity.h"
+#include "Wall.h"
+#include "Floor.h"
+#include <vector>
 
 typedef std::list<Entity*> EntityList;
 
@@ -24,6 +27,7 @@ class Item: public Entity
         vector3 v0;
         GLfloat t0;
         GLfloat mass;
+        Floor* actual_floor;
     private:
 };
 

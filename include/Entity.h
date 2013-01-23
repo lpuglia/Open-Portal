@@ -19,6 +19,7 @@ class Entity
         Entity(vector3 pos,vector3 dir, vector3 up);
         vector3 getPos();
         void setPos(vector3 pos);
+        vector3 getUp();
         GLfloat* getBBox();
         void setBBox(GLfloat* bbox);
         vector3 getDir(){ return dir; };
