@@ -15,7 +15,7 @@ Character::Character(vector3 pos, GLfloat mass, EntityList *entList)
 }
 
 void Character::init(){
-    cout << pos << endl;
+    //cout << pos << endl;
  	std::pair<std::vector<vector3>,std::vector<Floor*> > colliders = collision();
     //find active floor
     std::vector<Floor*>::iterator its = colliders.second.begin();
@@ -259,7 +259,7 @@ void Character::releaseEntity(){
     cube->setCollide(false);
     cube->setV0(releaseForce*(1/cube->getMass())*0.5);
     takenEntity->setPos(pos+vector3(0.0,1.0+dir1,0.0)+dir*2);
-    cout << takenEntity->getPos() << endl;
+    //cout << takenEntity->getPos() << endl;
     entityList->insert(++(entityList->begin()),takenEntity); //insert after the first element
     takenEntity = NULL;
 }

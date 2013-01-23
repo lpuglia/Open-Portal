@@ -6,7 +6,7 @@ Floor::Floor(vector3 pos, vector3 dir, vector3 up, vector3 vertex1, vector3 vert
     ///TODO BOUNDING BOX
     //build_bounding_box();
     const_term = dir[0]*vertices[0]+dir[1]*vertices[1]+dir[2]*vertices[2];
-    cout << const_term << endl;
+    //cout << const_term << endl;
     LoadTextureRAW("texture.raw",true);
 }
 
