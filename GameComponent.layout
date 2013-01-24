@@ -2,16 +2,16 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="include/Character.h" open="1" top="0" tabpos="5">
-		<Cursor position="1034" topLine="22" />
+		<Cursor position="700" topLine="19" />
 	</File>
 	<File name="include/Cube.h" open="0" top="0" tabpos="2">
 		<Cursor position="194" topLine="4" />
 	</File>
 	<File name="include/Entity.h" open="0" top="0" tabpos="1">
-		<Cursor position="752" topLine="15" />
+		<Cursor position="901" topLine="18" />
 	</File>
-	<File name="include/Floor.h" open="0" top="0" tabpos="3">
-		<Cursor position="448" topLine="0" />
+	<File name="include/Floor.h" open="1" top="1" tabpos="6">
+		<Cursor position="384" topLine="0" />
 	</File>
 	<File name="include/Item.h" open="0" top="0" tabpos="0">
 		<Cursor position="160" topLine="3" />
@@ -41,10 +41,10 @@
 		<Cursor position="1681" topLine="36" />
 	</File>
 	<File name="src/Entity.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="146" topLine="0" />
+		<Cursor position="98" topLine="0" />
 	</File>
 	<File name="src/Floor.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="1343" topLine="28" />
+		<Cursor position="845" topLine="18" />
 	</File>
 	<File name="src/Item.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="191" topLine="0" />
@@ -52,8 +52,8 @@
 	<File name="src/LevelDelimiter.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="1612" topLine="12" />
 	</File>
-	<File name="src/LevelManager.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="2946" topLine="43" />
+	<File name="src/LevelManager.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="3205" topLine="43" />
 	</File>
 	<File name="src/PhysicsEngine.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="57" topLine="1" />

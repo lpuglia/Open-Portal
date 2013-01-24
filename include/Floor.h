@@ -13,7 +13,6 @@ class Floor: public LevelDelimiter
         virtual ~Floor(){};
     protected:
     private:
-        GLuint LoadTextureRAW(const char* filename, bool wrap);
         void build_bounding_box();
         GLfloat const_term; //of the equation plane
 };

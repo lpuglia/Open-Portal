@@ -4,6 +4,11 @@ Wall::Wall(vector3 pos, vector3 dir, vector3 vertex1, vector3 vertex2, vector3 v
             LevelDelimiter(pos,dir.normalize(),vector3(0.0,1.0,0.0),vertex1,vertex2,vertex3,vertex4,color)
 {
     build_bounding_box();
+    texcoords={ 0.0,0.0,
+            10.0,0.0,
+            10.0,2.0,
+            0.0,2.0};
+    texture = LoadTextureRAW("wall.png");
 }
 
 void Wall::build_bounding_box(){

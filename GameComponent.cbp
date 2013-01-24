@@ -35,6 +35,7 @@
 		<Unit filename="include/Cube.h" />
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/Floor.h" />
+		<Unit filename="include/Geometry.h" />
 		<Unit filename="include/Item.h" />
 		<Unit filename="include/LevelDelimiter.h" />
 		<Unit filename="include/LevelManager.h" />
@@ -46,6 +47,7 @@
 		<Unit filename="src/Cube.cpp" />
 		<Unit filename="src/Entity.cpp" />
 		<Unit filename="src/Floor.cpp" />
+		<Unit filename="src/Geometry.cpp" />
 		<Unit filename="src/Item.cpp" />
 		<Unit filename="src/LevelDelimiter.cpp" />
 		<Unit filename="src/LevelManager.cpp" />

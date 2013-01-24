@@ -16,10 +16,13 @@ class LevelDelimiter: public Entity
         vector3 surfacePosition;
         GLfloat length;
         GLfloat height;
-    private:
-        virtual void build_bounding_box()=0;
         GLubyte faceIndices[12];
         GLfloat colors[12];
+        GLfloat texcoords[8];
+        GLuint LoadTextureRAW(const char* filename);
+        GLuint texture;
+    private:
+        virtual void build_bounding_box()=0;
 };
 
 #endif // LEVELDELIMITER_H

@@ -6,6 +6,7 @@
 #include <typeinfo>
 #include <GL/glut.h>
 #include <cml/cml.h>
+#include <FreeImage.h>
 
 using namespace cml;
 using namespace std;
