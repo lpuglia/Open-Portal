@@ -18,12 +18,12 @@ class Cube : public Item
     private:
         bool floor_collide, wall_collide;
         std::pair<std::vector<vector3>,std::vector<Floor*> > collision();
-        static GLfloat vertices[24];
-        static GLfloat colors[24];
-        static GLubyte cubeIndices[24];
-        static GLuint listIndex;
-        static GLboolean init;
-        static void initialize();
+        GLfloat* vertices;
+        GLfloat* texcoords;
+        GLubyte* cubeIndices;
+        GLuint listIndex;
+        GLboolean init;
+        void initialize();
 };
 
 #endif // CUBE_H

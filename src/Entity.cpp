@@ -41,3 +41,112 @@ GLfloat* Entity::getBBox(){
 void Entity::setBBox(GLfloat* bbox){
     Entity::bbox = bbox;
 }
+
+GLuint Entity::LoadTextureRAW(string filename) {
+    GLuint texture;
+    //image format
+	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
+	//pointer to the image, once loaded
+	FIBITMAP *dib(0);
+	//pointer to the image data
+	BYTE* bits(0);
+	//image width and height
+	unsigned int width(0), height(0);
+
+
+    fif = FreeImage_GetFileType(filename.c_str(), 0);
+	//if still unknown, try to guess the file format from the file extension
+	if(fif == FIF_UNKNOWN){
+		fif = FreeImage_GetFIFFromFilename(filename.c_str());
+		cout << "Getting Image Type" << endl;
+	}
+	//if still unkown, return failure
+	if(fif == FIF_UNKNOWN) cout << "Failed to get image type" << endl;
+
+	//check that the plugin has reading capabilities and load the file
+	if(FreeImage_FIFSupportsReading(fif)){
+		//dib = FreeImage_ConvertTo32Bits(dib);
+		dib = FreeImage_Load(fif, filename.c_str());
+	}
+	//if the image failed to load, return failure
+	if(!dib) cout << "Failed to load image" << endl;
+
+
+    bits = FreeImage_GetBits(dib);
+    width = FreeImage_GetWidth(dib);
+	height = FreeImage_GetHeight(dib);
+
+    // allocate a texture name
+    glGenTextures(1, &texture);
+
+
+    glBindTexture(GL_TEXTURE_2D, texture); //Tell OpenGL which texture to edit
+        //Map the image to the texture
+    glTexImage2D(GL_TEXTURE_2D,                //Always GL_TEXTURE_2D
+                 0,                            //0 for now
+                 GL_RGB,                       //Format OpenGL uses for image
+                 width, height,  //Width and height
+                 0,                            //The border of the image
+                 GL_BGR, //GL_RGB, because pixels are stored in RGB format
+                 GL_UNSIGNED_BYTE, //GL_UNSIGNED_BYTE, because pixels are stored
+                                   //as unsigned numbers
+                 bits);               //The actual pixel data
+
+    FreeImage_Unload(dib);
+    return texture;
+}
+
+
+GLuint Entity::LoadTextureRGBA(string filename) {
+    GLuint texture;
+    //image format
+	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
+	//pointer to the image, once loaded
+	FIBITMAP *dib(0);
+	//pointer to the image data
+	BYTE* bits(0);
+	//image width and height
+	unsigned int width(0), height(0);
+
+
+    fif = FreeImage_GetFileType(filename.c_str(), 0);
+	//if still unknown, try to guess the file format from the file extension
+	if(fif == FIF_UNKNOWN){
+		fif = FreeImage_GetFIFFromFilename(filename.c_str());
+		cout << "Getting Image Type" << endl;
+	}
+	//if still unkown, return failure
+	if(fif == FIF_UNKNOWN) cout << "Failed to get image type" << endl;
+
+	//check that the plugin has reading capabilities and load the file
+	if(FreeImage_FIFSupportsReading(fif)){
+		//dib = FreeImage_ConvertTo32Bits(dib);
+		dib = FreeImage_Load(fif, filename.c_str());
+	}
+	//if the image failed to load, return failure
+	if(!dib) cout << "Failed to load image" << endl;
+
+
+    bits = FreeImage_GetBits(dib);
+    width = FreeImage_GetWidth(dib);
+	height = FreeImage_GetHeight(dib);
+
+    // allocate a texture name
+    glGenTextures(1, &texture);
+
+
+    glBindTexture(GL_TEXTURE_2D, texture); //Tell OpenGL which texture to edit
+        //Map the image to the texture
+    glTexImage2D(GL_TEXTURE_2D,                //Always GL_TEXTURE_2D
+                 0,                            //0 for now
+                 GL_RGBA,                       //Format OpenGL uses for image
+                 width, height,  //Width and height
+                 0,                            //The border of the image
+                 GL_BGRA, //GL_RGB, because pixels are stored in RGB format
+                 GL_UNSIGNED_BYTE, //GL_UNSIGNED_BYTE, because pixels are stored
+                                   //as unsigned numbers
+                 bits);               //The actual pixel data
+
+    FreeImage_Unload(dib);
+    return texture;
+}

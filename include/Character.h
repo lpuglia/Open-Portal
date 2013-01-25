@@ -3,6 +3,8 @@
 
 #include "Item.h"
 #include "Cube.h"
+#include "Weapon.h"
+#include "Interface.h"
 
 class Character: public Item
 {
@@ -19,7 +21,7 @@ class Character: public Item
         void drawEntity();
         virtual void mouseMotion(int x, int y){};
         virtual void look(){};
-        Entity* takenEntity;
+        Entity* takenEntity[3];
         void init();
 
     protected:

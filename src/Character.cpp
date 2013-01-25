@@ -4,14 +4,16 @@ Character::Character(vector3 pos, GLfloat mass, EntityList *entList)
          :Item(pos,vector3(0.0,0.0,-1.0), mass, vector3(0.0,0.0,0.0), entList)
 {
     releaseForce = vector3(0.0,5.0,0.0);
-    shotForce = 30.0;
+    shotForce = 10.0;
     at=vector3(0.0,0.0,0.0);
     dir1=0.0;
 
     moveForward=false; moveBackward=false; moveRight=false; moveLeft=false;
     t0 = glutGet(GLUT_ELAPSED_TIME);
     jump = true; run = false;
-    takenEntity=NULL;
+    takenEntity[0]= new Weapon();
+    takenEntity[1]=NULL;
+    takenEntity[2]= new Interface();
 }
 
 void Character::init(){
@@ -33,7 +35,7 @@ void Character::init(){
 }
 
 void Character::mouse(int button, int state, int x, int y){
-    if(takenEntity!=NULL)
+    if(takenEntity[1]!=NULL)
         if(button==GLUT_LEFT_BUTTON && state==GLUT_DOWN){
             throwEntity();
         }
@@ -57,7 +59,7 @@ void Character::keyboard(unsigned char key)
             if(!jump){
                 jump = true;
                 t0 = glutGet(GLUT_ELAPSED_TIME);
-                v0 = vector3(0.0,400.0,0.0)*(1/mass)*0.5;
+                v0 = vector3(0.0,300.0,0.0)*(1/mass)*0.5;
             }
             break;
         default:
@@ -79,7 +81,7 @@ void Character::keyboardUp(unsigned char key)
         case 'a': moveLeft = false; break;
         /* Take */
         case 'e':
-            if(takenEntity==NULL) takeEntity();
+            if(takenEntity[1]==NULL) takeEntity();
             else releaseEntity();
             break;
         default:
@@ -199,8 +201,10 @@ std::pair<std::vector<vector3>,std::vector<Floor*> > Character::collision(){
 
 void Character::drawEntity(){
     glPushMatrix();
-    if(takenEntity!=NULL){
-        takenEntity->drawEntity();
+    takenEntity[0]->drawEntity();
+    //takenEntity[2]->drawEntity();
+    if(takenEntity[1]!=NULL){
+        takenEntity[1]->drawEntity();
     }
     glPopMatrix();
     look();
@@ -223,14 +227,14 @@ void Character::takeEntity(){
 
             if(angleCos<-0.75 && distLength<3.0 && distLength<minDistLength){
                     nearest = p;
-                    takenEntity = *p;
+                    takenEntity[1] = *p;
                     minDist = dist;
                     minDistLength = distLength;
             }
         }else break;
     }
 
-    if(takenEntity!=NULL){
+    if(takenEntity[1]!=NULL){
         ///TODO
         //Note #7
         /*GLfloat angle = ((Cube*)takenEntity)->getAngle();
@@ -244,13 +248,13 @@ void Character::takeEntity(){
         cout << gamma << endl << endl;
         ((Cube*)takenEntity)->setAngle(gamma);*/
 
-        takenEntity->setPos(vector3(0.0,-0.5,-2.0));
+        takenEntity[1]->setPos(vector3(0.0,-0.5,-2.0));
         entityList->erase(nearest);
     }
 }
 
 void Character::releaseEntity(){
-    Cube* cube = ((Cube*)takenEntity);
+    Cube* cube = ((Cube*)takenEntity[1]);
     ///TODO
     /*GLfloat angle = dir[2]/(dir.length());
     angle = (acos(angle)/3.14)*180.0;
@@ -258,17 +262,17 @@ void Character::releaseEntity(){
     cube->setAngle(angle + cube->getAngle());*/
     cube->setCollide(false);
     cube->setV0(releaseForce*(1/cube->getMass())*0.5);
-    takenEntity->setPos(pos+vector3(0.0,1.0+dir1,0.0)+dir*2);
+    takenEntity[1]->setPos(pos+vector3(0.0,1.0+dir1,0.0)+dir*2);
     //cout << takenEntity->getPos() << endl;
-    entityList->insert(++(entityList->begin()),takenEntity); //insert after the first element
-    takenEntity = NULL;
+    entityList->insert(++(entityList->begin()),takenEntity[1]); //insert after the first element
+    takenEntity[1] = NULL;
 }
 
 void Character::throwEntity(){
-    Cube* cube = ((Cube*)takenEntity);
+    Cube* cube = ((Cube*)takenEntity[1]);
     cube->setCollide(false);
     cube->setV0(((shotForce)*vector3(dir[0],dir1,dir[2]))*(1/cube->getMass())*0.5);
-    takenEntity->setPos(pos+vector3(0.0,1.4+dir1,0.0)+dir*2);
-    entityList->insert(++(entityList->begin()),takenEntity); //insert after the first element
-    takenEntity = NULL;
+    takenEntity[1]->setPos(pos+vector3(0.0,1.4+dir1,0.0)+dir*2);
+    entityList->insert(++(entityList->begin()),takenEntity[1]); //insert after the first element
+    takenEntity[1] = NULL;
 }

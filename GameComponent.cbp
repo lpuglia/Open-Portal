@@ -36,24 +36,29 @@
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/Floor.h" />
 		<Unit filename="include/Geometry.h" />
+		<Unit filename="include/Interface.h" />
 		<Unit filename="include/Item.h" />
 		<Unit filename="include/LevelDelimiter.h" />
 		<Unit filename="include/LevelManager.h" />
 		<Unit filename="include/PhysicsEngine.h" />
 		<Unit filename="include/ViewManager.h" />
 		<Unit filename="include/Wall.h" />
+		<Unit filename="include/Weapon.h" />
+		<Unit filename="include/weapon.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Character.cpp" />
 		<Unit filename="src/Cube.cpp" />
 		<Unit filename="src/Entity.cpp" />
 		<Unit filename="src/Floor.cpp" />
 		<Unit filename="src/Geometry.cpp" />
+		<Unit filename="src/Interface.cpp" />
 		<Unit filename="src/Item.cpp" />
 		<Unit filename="src/LevelDelimiter.cpp" />
 		<Unit filename="src/LevelManager.cpp" />
 		<Unit filename="src/PhysicsEngine.cpp" />
 		<Unit filename="src/ViewManager.cpp" />
 		<Unit filename="src/Wall.cpp" />
+		<Unit filename="src/Weapon.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

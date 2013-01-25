@@ -1,38 +1,54 @@
 #include "../include/Cube.h"
 
-GLfloat Cube::vertices[] = {-0.5f, 0.0f, 0.5f,   0.5f, 0.0f, 0.5f,   0.5f, 1.0f, 0.5f,
-                            -0.5f, 1.0f, 0.5f,  -0.5f, 1.0f, -0.5f,  0.5f, 1.0f, -0.5f,
-                             0.5f, 0.0f, -0.5f, -0.5f, 0.0f, -0.5f};
-GLfloat Cube::colors[] = { 1.0, 0.0, 0.0,  0.0, 1.0, 0.0,  0.0, 0.0, 1.0,
-                           1.0, 1.0, 0.0,  0.0, 0.0, 0.0,  1.0, 0.0, 1.0,
-                           1.0, 1.0, 1.0,  0.0, 1.0, 1.0 };
-GLubyte Cube::cubeIndices[] = {0,1,2,3, 4,5,6,7, 3,2,5,4, 7,6,1,0, 1,6,5,2, 3,4,7,0};
-GLuint Cube::listIndex;
-GLboolean Cube::init = false;
-
-/* maxi combo Vertex Array + Display List */
-void Cube::initialize(){
-    if(!init){
-        glVertexPointer(3, GL_FLOAT, 0, vertices);
-        glColorPointer(3, GL_FLOAT, 0, colors);
-        listIndex = glGenLists(1);
-        glNewList(listIndex, GL_COMPILE);
-            glEnableClientState(GL_COLOR_ARRAY);
-            glEnableClientState(GL_VERTEX_ARRAY);
-            glDrawElements(GL_QUADS, 24, GL_UNSIGNED_BYTE, cubeIndices);
-            glDisableClientState(GL_VERTEX_ARRAY);
-            glDisableClientState(GL_COLOR_ARRAY);
-        glEndList();
-        init=true;
-    }
-}
-
 Cube::Cube(vector3 pos, vector3 dir, EntityList *entList)
     :Item(pos, dir, 5.0, vector3(0.0,0.0,0.0),entList)
 {
+    GLfloat vert[48] =
+     {-0.5f, 0.0f, 0.5f,   0.5f, 0.0f, 0.5f,   0.5f, 1.0f, 0.5f,  -0.5f, 1.0f, 0.5f,
+      -0.5f, 1.0f, -0.5f,  0.5f, 1.0f, -0.5f,  0.5f, 0.0f, -0.5f, -0.5f, 0.0f, -0.5f,
+       0.5f, 0.0f, 0.5f,   0.5f, 0.0f, -0.5f,  0.5f, 1.0f, -0.5f,  0.5f, 1.0f, 0.5f,
+       -0.5f, 0.0f, -0.5f,  -0.5f, 0.0f, 0.5f,  -0.5f, 1.0f, 0.5f, -0.5f, 1.0f, -0.5f
+      }; vertices=vert;
+
+    GLfloat texc[32] = { 0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0,
+                      0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0,
+                      0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0,
+                      0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0
+                    }; texcoords=texc;
+
+    GLubyte cind[24] = {0,1,2,3, 4,5,6,7, 3,2,5,4, 7,6,1,0,  8,9,10,11, 12,13,14,15};
+    cubeIndices=cind;
+
+    init = false;
     floor_collide=false;
     wall_collide=false;
+    texture = LoadTextureRAW("texture/cube.png");
     initialize();
+}
+
+/* maxi combo Vertex Array + Display List */
+void Cube::initialize(){
+    listIndex = glGenLists(1);
+    glNewList(listIndex, GL_COMPILE);
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glColor3f(1.0f, 1.0f, 1.0f);
+
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+        glEnableClientState(GL_VERTEX_ARRAY);
+
+        glTexCoordPointer(2, GL_FLOAT, 0, texcoords);
+        glVertexPointer(3, GL_FLOAT, 0, vertices);
+
+        glDrawElements(GL_QUADS, 24, GL_UNSIGNED_BYTE, cubeIndices);
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+        glDisable(GL_TEXTURE_2D);
+    glEndList();
+    init=true;
 }
 
 void Cube::drawEntity(){

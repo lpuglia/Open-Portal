@@ -36,6 +36,9 @@ class Entity
         GLfloat dirMat[16];
         GLfloat angle;
         GLfloat* bbox;
+        GLuint texture;
+        GLuint LoadTextureRAW(string filename);
+        GLuint LoadTextureRGBA(string filename);
     private:
 };
 
