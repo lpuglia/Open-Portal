@@ -10,7 +10,7 @@ class Portal : public Item
         Portal(vector3 pos, vector3 dir, GLboolean type, EntityList *entList);
         void drawEntity();
         void set_position(vector3 pos, vector3 dir, vector3 up);
-        vector3* teleport_detection(vector3 pos);
+        Portal* teleport_detection(vector3 pos);
         void set_other_portal(Portal* other_portal);
         virtual ~Portal(){};
     protected:

@@ -51,9 +51,8 @@ void Portal::set_position(vector3 pos, vector3 dir, vector3 up){
     updateDirMat();
 }
 
-vector3* Portal::teleport_detection(vector3 pos){
-    if (1.7 > pow(pos[0]-Portal::pos[0],2)+pow(pos[1]+0.9-Portal::pos[1],2)+pow(pos[2]-Portal::pos[2],2)){
-        //cout << "---" << other_portal->getPos() << endl;
-        return &(other_portal->getPos());}
+Portal* Portal::teleport_detection(vector3 pos){
+    if (1.7 > pow(pos[0]-Portal::pos[0],2)+pow(pos[1]+0.9-Portal::pos[1],2)+pow(pos[2]-Portal::pos[2],2))
+        return other_portal;
     return NULL;
 }

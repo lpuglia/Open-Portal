@@ -37,7 +37,7 @@ class Character: public Item
         void takeEntity();
         void releaseEntity();
         void throwEntity();
-        vector3* collision(std::vector<vector3>* walls, std::vector<Floor*>* floors);
+        Portal* collision(std::vector<vector3>* walls, std::vector<Floor*>* floors);
         vector3 dist;
         vector3 precDist;
         Portal* blue;

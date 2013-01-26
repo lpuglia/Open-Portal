@@ -119,7 +119,16 @@ void Character::movement(){
 
 	std::vector<vector3> walls;
 	std::vector<Floor*> floors;
-	collision(&walls, &floors);
+	Portal* teleport_portal = collision(&walls, &floors);
+	if(teleport_portal!=NULL){
+        pos = teleport_portal->getPos()+teleport_portal->getDir()*2;
+        dir = teleport_portal->getDir();
+        dir[1] = 0.0;
+        dir.normalize();
+        side = cross(-dir, up);
+        return;
+	}
+
 
     //wall-collision response
     std::vector<vector3>::iterator it;
@@ -196,16 +205,15 @@ void Character::movement(){
 
 }
 
-vector3* Character::collision(std::vector<vector3>* walls, std::vector<Floor*>* floors){
-    vector3* teleport_position;
+Portal* Character::collision(std::vector<vector3>* walls, std::vector<Floor*>* floors){
+    Portal* teleport_portal=NULL;
     vector3 ld;
     vector3 zeros = vector3(0,0,0);
     list<Entity*>::iterator p;
     for (p = entityList->begin(), p++; p!=entityList->end(); p++){
         if (Portal* portal = dynamic_cast<Portal*>(*p)) {
-            teleport_position = portal->teleport_detection(pos);
-            if(teleport_position!=NULL){ cout << *teleport_position << endl;break;
-            }
+            teleport_portal = portal->teleport_detection(pos);
+            if(teleport_portal!=NULL) break;
         }else if (Wall* wall = dynamic_cast<Wall*>(*p)) {
             ld = wall->collision_detection(pos);
             if(ld!=zeros) walls->push_back(ld);
@@ -215,7 +223,7 @@ vector3* Character::collision(std::vector<vector3>* walls, std::vector<Floor*>* 
             if(ld!=zeros) floors->push_back(floor);
         }
     }
-    return teleport_position;
+    return teleport_portal;
 }
 
 
