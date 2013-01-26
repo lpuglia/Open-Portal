@@ -9,7 +9,7 @@ class Wall: public LevelDelimiter
         Wall(){};
         Wall(vector3 pos, vector3 dir, vector3 vertex1, vector3 vertex2, vector3 vertex3, vector3 vertex4, string texture_path);
         vector3 collision_detection(vector3 pos);
-        vector3 shot_detection(vector3 pos, vector3 dir);
+        vector3 shot_detection(vector3 pos, vector3 dir, GLfloat* min_dist);
         virtual ~Wall(){};
         GLfloat get_distance(vector3 pos);
     protected:

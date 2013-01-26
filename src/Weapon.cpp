@@ -111,21 +111,21 @@ void Weapon::movement(){
 }
 
 void Weapon::shot_portal(vector3 pos, vector3 dir, vector3* portal_pos, vector3* portal_dir){
-    vector3 ld;
-    vector3 zeros = vector3(0,0,0);
+    vector3 ld_pos;
+    GLfloat min_dist = 10000.0;
+    vector3 zeros = vector3(0.0,0.0,0.0);
     list<Entity*>::iterator p;
     for (p = entityList->begin(), p++; p!=entityList->end(); p++){
         if (Wall* wall = dynamic_cast<Wall*>(*p)) {
-            ld = wall->shot_detection(pos, dir);
-            if(ld!=zeros){
-                *portal_pos=ld;
+            ld_pos = wall->shot_detection(pos, dir, &min_dist);
+            if(ld_pos!=zeros){
+                *portal_pos=ld_pos;
                 *portal_dir=wall->getDir();
             }
-        }
-        else if (Floor* floor = dynamic_cast<Floor*>(*p)) {
-            ld = floor->shot_detection(pos, dir);
-            if(ld!=zeros){
-                *portal_pos=ld;
+        }else if (Floor* floor = dynamic_cast<Floor*>(*p)) {
+            ld_pos = floor->shot_detection(pos, dir, &min_dist);
+            if(ld_pos!=zeros){
+                *portal_pos=ld_pos;
                 *portal_dir=wall->getDir();
             }
         }

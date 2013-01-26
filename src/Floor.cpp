@@ -45,6 +45,6 @@ GLfloat Floor::get_height(vector3 pos){
     return ((dir[0]*pos[0]+dir[2]*pos[2]-const_term)/-dir[1]);
 }
 
-vector3 Floor::shot_detection(vector3 pos, vector3){
+vector3 Floor::shot_detection(vector3 pos, vector3, GLfloat* min_dist){
     return vector3(0.0,0.0,0.0);
 }

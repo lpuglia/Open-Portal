@@ -42,13 +42,13 @@ void Character::mouse(int button, int state, int x, int y){
     }else{
         if (state==GLUT_DOWN){
             vector3 portal_pos;
-            vector3 portal_dir;
+            vector3 portal_dir=vector3(0.0,0.0,0.0);
             (dynamic_cast<Weapon*>(takenEntity[0]))->
             shot_portal(vector3(pos[0],pos[1]+1.8,pos[2]), vector3(dir[0],dir1,dir[2]),&portal_pos,&portal_dir);
-            if(button==GLUT_LEFT_BUTTON){
+            if(button==GLUT_LEFT_BUTTON && portal_dir!=vector3(0.0,0.0,0.0)){
                   blue->set_position(portal_pos, portal_dir);
             }
-            if(button==GLUT_RIGHT_BUTTON){
+            if(button==GLUT_RIGHT_BUTTON && portal_dir!=vector3(0.0,0.0,0.0)){
                   orange->set_position(portal_pos, portal_dir);
             }
         }
