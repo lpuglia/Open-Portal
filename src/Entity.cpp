@@ -31,6 +31,14 @@ void Entity::setPos(vector3 pos){
     Entity::pos = pos;
 }
 
+void Entity::setDir(vector3 dir){
+    Entity::dir = dir;
+}
+
+vector3 Entity::getDir(){
+    return dir;
+}
+
 vector3 Entity::getUp(){
     return up;
 }

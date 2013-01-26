@@ -14,7 +14,8 @@ class Item: public Entity
 {
     public:
         Item(){};
-        Item(vector3 pos, vector3 dir, GLfloat mass, vector3 v0, EntityList *entityList);
+        Item(vector3 pos, vector3 dir, GLfloat mass, vector3 v0, EntityList *entList);
+        Item(vector3 pos, vector3 dir, EntityList *entList);
         vector3 getV0();
         void setV0(vector3 v0);
         GLfloat getMass();

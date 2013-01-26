@@ -23,7 +23,7 @@ class Character: public Item
         virtual void mouseMotion(int x, int y){};
         virtual void look(){};
         Entity* takenEntity[3];
-        void init();
+        void init(Portal* blue, Portal* orange);
 
     protected:
         vector3 releaseForce;
@@ -40,7 +40,8 @@ class Character: public Item
         std::pair<std::vector<vector3>,std::vector<Floor*> > collision();
         vector3 dist;
         vector3 precDist;
-        Bound bound;
+        Portal* blue;
+        Portal* orange;
 };
 
 #endif // CHARACTER_H

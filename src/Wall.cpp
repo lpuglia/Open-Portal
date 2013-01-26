@@ -68,11 +68,13 @@ GLfloat Wall::get_distance(vector3 pos){
 
 vector3 Wall::shot_detection(vector3 pos, vector3 dir){
     vector3 plane_point = vector3(vertices[0],vertices[1], vertices[2]);
-
+    vector3 zeros = vector3(0,0,0);
 
     GLfloat dist = dot((plane_point-pos),Wall::dir)/dot(dir,Wall::dir);
-
-    cout << dist*dir+pos << endl;
-
-    return vector3(0.0,0.0,0.0);
+    if(dist<0.0) return vector3(0.0,0.0,0.0);
+    pos = (dist-0.1)*dir+pos;
+    //if shot in wall
+    if (collision_detection(pos)!=zeros)
+        return pos;
+    else return zeros;
 }

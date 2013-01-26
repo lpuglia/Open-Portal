@@ -16,7 +16,9 @@ Character::Character(vector3 pos, GLfloat mass, EntityList *entList)
     takenEntity[2]= new Interface();
 }
 
-void Character::init(){
+void Character::init(Portal* blue, Portal* orange){
+    Character::blue = blue;
+    Character::orange = orange;
     //cout << pos << endl;
  	std::pair<std::vector<vector3>,std::vector<Floor*> > colliders = collision();
     //find active floor
@@ -35,12 +37,21 @@ void Character::init(){
 }
 
 void Character::mouse(int button, int state, int x, int y){
-    if(button==GLUT_LEFT_BUTTON && state==GLUT_DOWN){
-        if(takenEntity[1]!=NULL){
+    if(takenEntity[1]!=NULL){
             throwEntity();
-        }else{
+    }else{
+        if (state==GLUT_DOWN){
+            vector3 portal_pos;
+            vector3 portal_dir;
             (dynamic_cast<Weapon*>(takenEntity[0]))->
-                        shot_portal(pos, vector3(dir[0],dir1,dir[2]));
+            shot_portal(vector3(pos[0],pos[1]+1.8,pos[2]), vector3(dir[0],dir1,dir[2]),&portal_pos,&portal_dir);
+            cout << portal_pos << " " << portal_dir << endl;
+            if(button==GLUT_LEFT_BUTTON){
+                  blue->set_position(portal_pos, portal_dir);
+            }
+            if(button==GLUT_RIGHT_BUTTON){
+                  orange->set_position(portal_pos, portal_dir);
+            }
         }
     }
 }

@@ -28,6 +28,10 @@ void LevelManager::init(int width, int height){
 
     he = new ViewManager(vector3(1.0,0.0,5.0), 1.80, width, height, &entList);
     entList.push_back(he);
+    Portal* blue = new Portal(vector3(0.0,1.3,0.0),vector3(0.0,0.0,1.0),true,&entList);
+    entList.push_back(blue);
+    Portal* orange = new Portal(vector3(2.0,1.3,0.0),vector3(0.0,0.0,1.0),false,&entList);
+    entList.push_back(orange);
 
     ///TODO "LOAD LEVEL ELEMENTS"
     entList.push_back(new Cube(vector3(3.0,10.0,3.0),vector3(0.0,0.0,1.0),&entList));
@@ -52,10 +56,10 @@ void LevelManager::init(int width, int height){
     entList.push_back(new Bound());
 
     /*First Level */
-    //entList.push_back(new Wall(vector3(0.0,0.0,10.0),vector3(0.0,0.0,-1.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
+    entList.push_back(new Wall(vector3(0.0,0.0,10.0),vector3(0.0,0.0,-1.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
     entList.push_back(new Wall(vector3(0.0,0.0,-10.0),vector3(0.0,0.0,1.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
-    /*entList.push_back(new Wall(vector3(10.0,0.0,0.0),vector3(-1.0,0.0,0.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
-    entList.push_back(new Wall(vector3(-10.0,0.0,-15.0),vector3(-1.0,0.0,0.0),vector3(-5.0,-30.0,0.0),vector3(5.0,-30.0,0.0),vector3(5.0,10.0,0.0),vector3(-5.0,10.0,0.0),"wall.png"));
+    entList.push_back(new Wall(vector3(10.0,0.0,0.0),vector3(-1.0,0.0,0.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
+    /*entList.push_back(new Wall(vector3(-10.0,0.0,-15.0),vector3(-1.0,0.0,0.0),vector3(-5.0,-30.0,0.0),vector3(5.0,-30.0,0.0),vector3(5.0,10.0,0.0),vector3(-5.0,10.0,0.0),"wall.png"));
     entList.push_back(new Wall(vector3(-10.0,0.0,15.0),vector3(-1.0,0.0,0.0),vector3(-5.0,-30.0,0.0),vector3(5.0,-30.0,0.0),vector3(5.0,10.0,0.0),vector3(-5.0,10.0,0.0),"wall.png"));
     entList.push_back(new Wall(vector3(-20.0,0.0,20.0),vector3(0.0,0.0,-1.0),vector3(-10.0,-30.0,0.0),vector3(10.0,-30.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
     entList.push_back(new Wall(vector3(-20.0,0.0,-20.0),vector3(0.0,0.0,1.0),vector3(-10.0,-30.0,0.0),vector3(10.0,-30.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
@@ -71,7 +75,7 @@ void LevelManager::init(int width, int height){
     entList.push_back(new Floor(vector3(-20.0,-21.55,17.9),vector3(0.0,1.0,0.0),vector3(1.0,0.0,0.0),vector3(-4,-10.0,0.0),vector3(4.0,-10.0,0.0),vector3(4.0,10.0,0.0),vector3(-4.0,10.0,0.0),"floor.png"));
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    he->init();
+    he->init(blue,orange);
 }
 
 void LevelManager::reshape(int w, int h){

@@ -9,8 +9,8 @@ class Weapon : public Item
     public:
         Weapon(EntityList *entList);
         void drawEntity();
+        void shot_portal(vector3 pos, vector3 dir, vector3* portal_pos, vector3* portal_dir);
         virtual ~Weapon(){};
-        void shot_portal(vector3 pos, vector3 dir);
     protected:
         void movement();
     private:

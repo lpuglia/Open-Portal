@@ -1,7 +1,7 @@
 #include "../include/Weapon.h"
 
 Weapon::Weapon(EntityList *entList)
-    :Item(vector3(0.0,0.0,0.0),vector3(0.0,0.0,-1.0), 0.0, vector3(0.0,0.0,0.0), entList)
+    :Item(vector3(0.0,0.0,0.0),vector3(0.0,0.0,-1.0), entList)
 {
     gun1={0.4,-1.0,-0.1, 0.8,-1.0,-0.1, 0.8,-0.5,-1.3, 0.4,-0.5,-1.3};
     gun2={0.4,-1.0,-0.1, 0.4,-0.5,-1.3, 0.4,-1.0,-1.3, 0.4,-2.0,0.1};
@@ -110,20 +110,24 @@ void Weapon::drawEntity(){
 void Weapon::movement(){
 }
 
-void Weapon::shot_portal(vector3 pos, vector3 dir){
+void Weapon::shot_portal(vector3 pos, vector3 dir, vector3* portal_pos, vector3* portal_dir){
     vector3 ld;
     vector3 zeros = vector3(0,0,0);
     list<Entity*>::iterator p;
     for (p = entityList->begin(), p++; p!=entityList->end(); p++){
         if (Wall* wall = dynamic_cast<Wall*>(*p)) {
             ld = wall->shot_detection(pos, dir);
-            if(ld!=zeros)
-                cout << "pew pew" << endl;
+            if(ld!=zeros){
+                *portal_pos=ld;
+                *portal_dir=wall->getDir();
+            }
         }
         else if (Floor* floor = dynamic_cast<Floor*>(*p)) {
             ld = floor->shot_detection(pos, dir);
-            if(ld!=zeros)
-                cout << "pew pew" << endl;
+            if(ld!=zeros){
+                *portal_pos=ld;
+                *portal_dir=wall->getDir();
+            }
         }
     }
 }
