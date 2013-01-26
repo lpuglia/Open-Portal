@@ -31,6 +31,8 @@ void LevelManager::init(int width, int height){
     Portal* blue = new Portal(vector3(0.0,100.0,0.0),vector3(0.0,0.0,-1.0),true,&entList);
     entList.push_back(blue);
     Portal* orange = new Portal(vector3(0.0,100.0,0.0),vector3(0.0,0.0,-1.0),false,&entList);
+    blue->set_other_portal(orange);
+    orange->set_other_portal(blue);
     entList.push_back(orange);
 
     ///TODO "LOAD LEVEL ELEMENTS"
@@ -148,7 +150,7 @@ void LevelManager::calculateFPS(){
         LevelManager::fps = LevelManager::frameCount / (timeInterval / 1000.0f);
         LevelManager::previousTime = LevelManager::currentTime;
         LevelManager::frameCount = 0;
-        printf("\r%d FPS",LevelManager::fps);
+        //printf("\r%d FPS",LevelManager::fps);
         fflush(stdout);
     }
 }

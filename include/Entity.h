@@ -22,10 +22,11 @@ class Entity
         vector3 getPos();
         void setPos(vector3 pos);
         vector3 getUp();
+        void setUp(vector3 up);
+        vector3 getDir();
+        void setDir(vector3 dir);
         GLfloat* getBBox();
         void setBBox(GLfloat* bbox);
-        void setDir(vector3 dir);
-        vector3 getDir();
         void updateDirMat();
         virtual void drawEntity()=0;
         virtual ~Entity() {};

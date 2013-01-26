@@ -39,6 +39,10 @@ vector3 Entity::getDir(){
     return dir;
 }
 
+void Entity::setUp(vector3 up){
+    Entity::up = up;
+}
+
 vector3 Entity::getUp(){
     return up;
 }

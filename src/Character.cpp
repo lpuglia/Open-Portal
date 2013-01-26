@@ -20,12 +20,14 @@ void Character::init(Portal* blue, Portal* orange){
     Character::blue = blue;
     Character::orange = orange;
     //cout << pos << endl;
- 	std::pair<std::vector<vector3>,std::vector<Floor*> > colliders = collision();
+ 	std::vector<vector3> walls;
+	std::vector<Floor*> floors;
+	collision(&walls, &floors);
     //find active floor
-    std::vector<Floor*>::iterator its = colliders.second.begin();
+    std::vector<Floor*>::iterator its = floors.begin();
     Floor* below_floor=*its;
     GLfloat below_height = below_floor->get_height(pos);
-    for(its++; its!=colliders.second.end(); its++){
+    for(its++; its!=floors.end(); its++){
         Floor* fl = *its;
         GLfloat floor_height = fl->get_height(pos);
         if(floor_height>=pos[1] && floor_height<=below_height){
@@ -43,13 +45,16 @@ void Character::mouse(int button, int state, int x, int y){
         if (state==GLUT_DOWN){
             vector3 portal_pos;
             vector3 portal_dir=vector3(0.0,0.0,0.0);
+            vector3 portal_up;
             (dynamic_cast<Weapon*>(takenEntity[0]))->
-            shot_portal(vector3(pos[0],pos[1]+1.8,pos[2]), vector3(dir[0],dir1,dir[2]),&portal_pos,&portal_dir);
+            shot_portal(vector3(pos[0],pos[1]+1.8,pos[2]), vector3(dir[0],dir1,dir[2]),&portal_pos,&portal_dir,&portal_up);
+
+            //cout << portal_pos << " " << portal_dir << " " << portal_up << endl;
             if(button==GLUT_LEFT_BUTTON && portal_dir!=vector3(0.0,0.0,0.0)){
-                  blue->set_position(portal_pos, portal_dir);
+                  blue->set_position(portal_pos, portal_dir, portal_up);
             }
             if(button==GLUT_RIGHT_BUTTON && portal_dir!=vector3(0.0,0.0,0.0)){
-                  orange->set_position(portal_pos, portal_dir);
+                  orange->set_position(portal_pos, portal_dir, portal_up);
             }
         }
     }
@@ -112,11 +117,13 @@ void Character::movement(){
     vector3 tmp2 = dir;
     vector3 tmp3 = side;
 
-	std::pair<std::vector<vector3>,std::vector<Floor*> > colliders = collision();
+	std::vector<vector3> walls;
+	std::vector<Floor*> floors;
+	collision(&walls, &floors);
 
     //wall-collision response
     std::vector<vector3>::iterator it;
-    for(it=colliders.first.begin(); it!=colliders.first.end(); it++){
+    for(it=walls.begin(); it!=walls.end(); it++){
         vector3 collider = *it;
 
         //perpendicular of collider
@@ -145,7 +152,7 @@ void Character::movement(){
     std::vector<Floor*>::iterator its;
     Floor* below_floor;
     GLfloat below_height=-100.0;
-    for(its=colliders.second.begin(); its!=colliders.second.end(); its++){
+    for(its=floors.begin(); its!=floors.end(); its++){
         Floor* fl = *its;
         GLfloat floor_height = fl->get_height(pos);
         //cout << pos[1] << " " << floor_height << " " << below_height << endl;
@@ -189,27 +196,26 @@ void Character::movement(){
 
 }
 
-std::pair<std::vector<vector3>,std::vector<Floor*> > Character::collision(){
-    std::pair<std::vector<vector3>,std::vector<Floor*> > collider;
-    collider.first = std::vector<vector3>();
-    collider.second = std::vector<Floor*>();
-
+vector3* Character::collision(std::vector<vector3>* walls, std::vector<Floor*>* floors){
+    vector3* teleport_position;
     vector3 ld;
     vector3 zeros = vector3(0,0,0);
     list<Entity*>::iterator p;
     for (p = entityList->begin(), p++; p!=entityList->end(); p++){
-        if (Wall* wall = dynamic_cast<Wall*>(*p)) {
+        if (Portal* portal = dynamic_cast<Portal*>(*p)) {
+            teleport_position = portal->teleport_detection(pos);
+            if(teleport_position!=NULL){ cout << *teleport_position << endl;break;
+            }
+        }else if (Wall* wall = dynamic_cast<Wall*>(*p)) {
             ld = wall->collision_detection(pos);
-            if(ld!=zeros)
-                collider.first.push_back(ld);
+            if(ld!=zeros) walls->push_back(ld);
         }
         else if (Floor* floor = dynamic_cast<Floor*>(*p)) {
             ld = floor->collision_detection(pos);
-            if(ld!=zeros)
-                collider.second.push_back(floor);
+            if(ld!=zeros) floors->push_back(floor);
         }
     }
-    return collider;
+    return teleport_position;
 }
 
 

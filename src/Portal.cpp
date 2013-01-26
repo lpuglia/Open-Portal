@@ -34,14 +34,26 @@ Portal::Portal(vector3 pos, vector3 dir, GLboolean type, EntityList *entList)
     glEndList();
 }
 
+void Portal::set_other_portal(Portal* other_portal){
+    Portal::other_portal=other_portal;
+}
+
 void Portal::drawEntity(){
     glTranslatef(pos[0],pos[1],pos[2]);
     glMultMatrixf(dirMat);
     glCallList(listIndex);
 }
 
-void Portal::set_position(vector3 pos, vector3 dir){
+void Portal::set_position(vector3 pos, vector3 dir, vector3 up){
     setPos(pos);
     setDir(dir);
+    setUp(up);
     updateDirMat();
+}
+
+vector3* Portal::teleport_detection(vector3 pos){
+    if (1.7 > pow(pos[0]-Portal::pos[0],2)+pow(pos[1]+0.9-Portal::pos[1],2)+pow(pos[2]-Portal::pos[2],2)){
+        //cout << "---" << other_portal->getPos() << endl;
+        return &(other_portal->getPos());}
+    return NULL;
 }

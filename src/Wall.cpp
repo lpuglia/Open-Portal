@@ -76,7 +76,7 @@ vector3 Wall::shot_detection(vector3 pos, vector3 dir, GLfloat* min_dist){
     if(dist<0.0 || dist>=*min_dist || tmp/(dir.length()*Wall::dir.length())>=0.0)
         return zeros;
 
-    pos = (dist-0.1)*dir+pos;
+    pos = (dist-0.01)*dir+pos;
 
     //if shot in wall
     if (collision_detection(pos)!=zeros){
