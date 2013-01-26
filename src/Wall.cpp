@@ -33,15 +33,11 @@ vector3 Wall::collision_detection(vector3 pos){
     vector3 gamma = vector3(pos[0] - bbox[0], 0, pos[2] - bbox[2]);
     vector3 delta = vector3(pos[0] - bbox[3], 0, pos[2] - bbox[5]);
 
-    GLfloat dl = delta.length();
-    GLfloat gl = gamma.length();
-    GLfloat sindelta = (dir[0]*delta[2]-dir[2]*delta[0])/(dl);
-    GLfloat singamma = (dir[0]*gamma[2]-dir[2]*gamma[0])/(gl);
+    GLfloat sindelta = (dir[0]*delta[2]-dir[2]*delta[0])/(delta.length());
+    GLfloat singamma = (dir[0]*gamma[2]-dir[2]*gamma[0])/(gamma.length());
 
-    //cout << sindelta << " " << singamma << " " << get_distance(pos) << endl;
-
-    //GLfloat sinalpha = (-delta[0])/(dl);//GLfloat sinalpha = (dir[0]*delta[1]-dir[1]*delta[0])/(dl);
-    //GLfloat sinbeta = (-gamma[0])/(gl);//GLfloat sinbeta = (dir[0]*gamma[1]-dir[1]*gamma[0])/(gl);
+    if(signbit(sindelta)!=signbit(singamma) && vertices[4]<=pos[1] && pos[1]<vertices[7] && get_distance(pos)<1.0)
+        return dir;
 
     /*vector3 gamma = vector3(pos[0] - bbox[0], 0, pos[2] - bbox[2]);
     vector3 delta = vector3(pos[0] - bbox[3], 0, pos[2] - bbox[5]);
@@ -63,11 +59,20 @@ vector3 Wall::collision_detection(vector3 pos){
 
     if(signbit(sindelta)!=signbit(singamma) && (signbit(sineps)!=signbit(sinzeta)) && signbit(cosalpha)!=signbit(cosdelta))
         return dir;*/
-    if(signbit(sindelta)!=signbit(singamma) && vertices[4]<=pos[1] && pos[1]<vertices[7] && get_distance(pos)<1.0)
-        return dir;
     return vector3(0.0,0.0,0.0);
 }
 
 GLfloat Wall::get_distance(vector3 pos){
     return abs(dir[0]*pos[0]+dir[2]*pos[2]-const_term)/square_root;
+}
+
+vector3 Wall::shot_detection(vector3 pos, vector3 dir){
+    vector3 plane_point = vector3(vertices[0],vertices[1], vertices[2]);
+
+
+    GLfloat dist = dot((plane_point-pos),Wall::dir)/dot(dir,Wall::dir);
+
+    cout << dist*dir+pos << endl;
+
+    return vector3(0.0,0.0,0.0);
 }

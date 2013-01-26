@@ -41,6 +41,7 @@
 		<Unit filename="include/LevelDelimiter.h" />
 		<Unit filename="include/LevelManager.h" />
 		<Unit filename="include/PhysicsEngine.h" />
+		<Unit filename="include/Portal.h" />
 		<Unit filename="include/ViewManager.h" />
 		<Unit filename="include/Wall.h" />
 		<Unit filename="include/Weapon.h" />
@@ -56,6 +57,7 @@
 		<Unit filename="src/LevelDelimiter.cpp" />
 		<Unit filename="src/LevelManager.cpp" />
 		<Unit filename="src/PhysicsEngine.cpp" />
+		<Unit filename="src/Portal.cpp" />
 		<Unit filename="src/ViewManager.cpp" />
 		<Unit filename="src/Wall.cpp" />
 		<Unit filename="src/Weapon.cpp" />

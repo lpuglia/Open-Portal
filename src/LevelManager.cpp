@@ -52,16 +52,16 @@ void LevelManager::init(int width, int height){
     entList.push_back(new Bound());
 
     /*First Level */
-    entList.push_back(new Wall(vector3(0.0,0.0,10.0),vector3(0.0,0.0,-1.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
+    //entList.push_back(new Wall(vector3(0.0,0.0,10.0),vector3(0.0,0.0,-1.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
     entList.push_back(new Wall(vector3(0.0,0.0,-10.0),vector3(0.0,0.0,1.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
-    entList.push_back(new Wall(vector3(10.0,0.0,0.0),vector3(-1.0,0.0,0.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
+    /*entList.push_back(new Wall(vector3(10.0,0.0,0.0),vector3(-1.0,0.0,0.0),vector3(-10.0,0.0,0.0),vector3(10.0,0.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
     entList.push_back(new Wall(vector3(-10.0,0.0,-15.0),vector3(-1.0,0.0,0.0),vector3(-5.0,-30.0,0.0),vector3(5.0,-30.0,0.0),vector3(5.0,10.0,0.0),vector3(-5.0,10.0,0.0),"wall.png"));
     entList.push_back(new Wall(vector3(-10.0,0.0,15.0),vector3(-1.0,0.0,0.0),vector3(-5.0,-30.0,0.0),vector3(5.0,-30.0,0.0),vector3(5.0,10.0,0.0),vector3(-5.0,10.0,0.0),"wall.png"));
     entList.push_back(new Wall(vector3(-20.0,0.0,20.0),vector3(0.0,0.0,-1.0),vector3(-10.0,-30.0,0.0),vector3(10.0,-30.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
     entList.push_back(new Wall(vector3(-20.0,0.0,-20.0),vector3(0.0,0.0,1.0),vector3(-10.0,-30.0,0.0),vector3(10.0,-30.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
     entList.push_back(new Wall(vector3(-30.0,0.0,0.0),vector3(1.0,0.0,0.0),vector3(-20.0,-30.0,0.0),vector3(20.0,-30.0,0.0),vector3(20.0,10.0,0.0),vector3(-20.0,10.0,0.0),"wall.png"));
     entList.push_back(new Wall(vector3(-10.0,-10.0,0.0),vector3(-1.0,0.0,0.0),vector3(-10.0,-20.0,0.0),vector3(10.0,-20.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
-
+*/
     //entList.push_back(new Floor(vector3(0.0,0.5,0.0),vector3(0.0,1.0,0.0),vector3(1.0,0.0,0.0),vector3(-2.0,-2.0,0.0),vector3(2.0,-2.0,0.0),vector3(2.0,2.0,0.0),vector3(-2.0,2.0,0.0),vector3(0.0,0.0,0.0)));
     entList.push_back(new Floor(vector3(0.0,0.0,0.0),vector3(0.0,1.0,0.0),vector3(1.0,0.0,0.0),vector3(-10.0,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"floor.png"));
     entList.push_back(new Floor(vector3(-20.0,-5.0,0.0),vector3(0.0,1.0,0.5),vector3(1.0,0.0,0.0),vector3(-11.185,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-11.185,10.0,0.0),"floor.png"));
@@ -144,7 +144,7 @@ void LevelManager::calculateFPS(){
         LevelManager::fps = LevelManager::frameCount / (timeInterval / 1000.0f);
         LevelManager::previousTime = LevelManager::currentTime;
         LevelManager::frameCount = 0;
-        printf("\r%d FPS",LevelManager::fps);
+        //printf("\r%d FPS",LevelManager::fps);
         fflush(stdout);
     }
 }

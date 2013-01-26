@@ -7,9 +7,10 @@
 class Weapon : public Item
 {
     public:
-        Weapon();
+        Weapon(EntityList *entList);
         void drawEntity();
         virtual ~Weapon(){};
+        void shot_portal(vector3 pos, vector3 dir);
     protected:
         void movement();
     private:

@@ -11,7 +11,7 @@ Character::Character(vector3 pos, GLfloat mass, EntityList *entList)
     moveForward=false; moveBackward=false; moveRight=false; moveLeft=false;
     t0 = glutGet(GLUT_ELAPSED_TIME);
     jump = true; run = false;
-    takenEntity[0]= new Weapon();
+    takenEntity[0]= new Weapon(entList);
     takenEntity[1]=NULL;
     takenEntity[2]= new Interface();
 }
@@ -35,10 +35,14 @@ void Character::init(){
 }
 
 void Character::mouse(int button, int state, int x, int y){
-    if(takenEntity[1]!=NULL)
-        if(button==GLUT_LEFT_BUTTON && state==GLUT_DOWN){
+    if(button==GLUT_LEFT_BUTTON && state==GLUT_DOWN){
+        if(takenEntity[1]!=NULL){
             throwEntity();
+        }else{
+            (dynamic_cast<Weapon*>(takenEntity[0]))->
+                        shot_portal(pos, vector3(dir[0],dir1,dir[2]));
         }
+    }
 }
 
 void Character::keyboard(unsigned char key)
@@ -218,8 +222,7 @@ void Character::takeEntity(){
 
     list<Entity*>::iterator p;
     for (p = entityList->begin(), p++; p!=entityList->end(); p++){
-        if (typeid(**p) != typeid(bound)){
-            //cout << typeid(**p).name() << endl;
+        if (!dynamic_cast<Bound*>(*p)){
             vector3 pos = (*p)->getPos();
             vector3 dist = Character::pos - pos;
             GLfloat distLength = dist.length();
@@ -254,7 +257,7 @@ void Character::takeEntity(){
 }
 
 void Character::releaseEntity(){
-    Cube* cube = ((Cube*)takenEntity[1]);
+    Cube* cube = dynamic_cast<Cube*>(takenEntity[1]);
     ///TODO
     /*GLfloat angle = dir[2]/(dir.length());
     angle = (acos(angle)/3.14)*180.0;
@@ -269,7 +272,7 @@ void Character::releaseEntity(){
 }
 
 void Character::throwEntity(){
-    Cube* cube = ((Cube*)takenEntity[1]);
+    Cube* cube = dynamic_cast<Cube*>(takenEntity[1]);
     cube->setCollide(false);
     cube->setV0(((shotForce)*vector3(dir[0],dir1,dir[2]))*(1/cube->getMass())*0.5);
     takenEntity[1]->setPos(pos+vector3(0.0,1.4+dir1,0.0)+dir*2);

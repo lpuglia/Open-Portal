@@ -5,6 +5,7 @@
 #include "Cube.h"
 #include "Weapon.h"
 #include "Interface.h"
+#include "Portal.h"
 
 class Character: public Item
 {
