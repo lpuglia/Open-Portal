@@ -11,7 +11,7 @@ class LevelDelimiter: public Entity
         LevelDelimiter(vector3 pos, vector3 dir, vector3 up, vector3 vertex1, vector3 vertex2, vector3 vertex3, vector3 vertex4, string texture_path);
         void drawEntity();
         virtual vector3 collision_detection(vector3 pos)=0;
-        virtual vector3 shot_detection(vector3 pos, vector3 dir, GLfloat* min_dist)=0;
+        vector3 shot_detection(vector3 pos, vector3 dir, GLfloat* min_dist);
         virtual ~LevelDelimiter(){};
     protected:
         GLfloat vertices[12];

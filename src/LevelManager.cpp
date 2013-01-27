@@ -150,7 +150,7 @@ void LevelManager::calculateFPS(){
         LevelManager::fps = LevelManager::frameCount / (timeInterval / 1000.0f);
         LevelManager::previousTime = LevelManager::currentTime;
         LevelManager::frameCount = 0;
-        //printf("\r%d FPS",LevelManager::fps);
+        printf("\r%d FPS",LevelManager::fps);
         fflush(stdout);
     }
 }

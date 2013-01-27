@@ -65,22 +65,3 @@ vector3 Wall::collision_detection(vector3 pos){
 GLfloat Wall::get_distance(vector3 pos){
     return abs(dir[0]*pos[0]+dir[2]*pos[2]-const_term)/square_root;
 }
-
-vector3 Wall::shot_detection(vector3 pos, vector3 dir, GLfloat* min_dist){
-    vector3 plane_point = vector3(vertices[0],vertices[1], vertices[2]);
-    vector3 zeros = vector3(0,0,0);
-
-    GLfloat tmp = dot(dir,Wall::dir);
-    GLfloat dist = dot((plane_point-pos),Wall::dir)/tmp;
-    //if not in front OR not minimum distance OR at back
-    if(dist<0.0 || dist>=*min_dist || tmp/(dir.length()*Wall::dir.length())>=0.0)
-        return zeros;
-
-    pos = (dist-0.01)*dir+pos;
-
-    //if shot in wall
-    if (collision_detection(pos)!=zeros){
-        *min_dist=dist;
-        return pos;
-    }else return zeros;
-}
