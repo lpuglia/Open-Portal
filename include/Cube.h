@@ -2,6 +2,8 @@
 #define CUBE_H
 
 #include "Item.h"
+#include "Portal.h"
+
 
 class Cube : public Item
 {
@@ -17,7 +19,7 @@ class Cube : public Item
     protected:
     private:
         bool floor_collide, wall_collide;
-        std::pair<std::vector<vector3>,std::vector<Floor*> > collision();
+        Portal* collision(std::vector<vector3>* walls, std::vector<Floor*>* floors);
         GLfloat* vertices;
         GLfloat* texcoords;
         GLubyte* cubeIndices;

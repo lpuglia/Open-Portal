@@ -4,7 +4,7 @@ Character::Character(vector3 pos, GLfloat mass, EntityList *entList)
          :Item(pos,vector3(0.0,0.0,-1.0), mass, vector3(0.0,0.0,0.0), entList)
 {
     releaseForce = vector3(0.0,5.0,0.0);
-    shotForce = 10.0;
+    shotForce = 20.0;
     at=vector3(0.0,0.0,0.0);
     dir1=0.0;
 
@@ -120,6 +120,8 @@ void Character::movement(){
 	std::vector<vector3> walls;
 	std::vector<Floor*> floors;
 	Portal* teleport_portal = collision(&walls, &floors);
+
+    //teleporting
 	if(teleport_portal!=NULL){
         vector3 other_dir = teleport_portal->other_portal->getDir();
         GLfloat rot_angle = asin(dir[0]*other_dir[2]-dir[2]*other_dir[0]);
@@ -182,7 +184,7 @@ void Character::movement(){
         Floor* fl = *its;
         GLfloat floor_height = fl->get_height(pos);
         //cout << pos[1] << " " << floor_height << " " << below_height << endl;
-        if(floor_height-1.0<=pos[1] && floor_height>=below_height){
+        if(floor_height-1.0<=pos[1] && floor_height>=below_height && fl->getDir()[1]>0.0){
             below_floor=fl;
             below_height=floor_height;
         }
@@ -225,11 +227,12 @@ void Character::movement(){
 Portal* Character::collision(std::vector<vector3>* walls, std::vector<Floor*>* floors){
     Portal* teleport_portal=NULL;
     vector3 ld;
+    vector3 hv = vector3(0.0,0.9,0.0);
     vector3 zeros = vector3(0,0,0);
     list<Entity*>::iterator p;
     for (p = entityList->begin(), p++; p!=entityList->end(); p++){
         if (Portal* portal = dynamic_cast<Portal*>(*p)) {
-            teleport_portal = portal->teleport_detection(pos);
+            teleport_portal = portal->teleport_detection(pos+hv);
             if(teleport_portal!=NULL) break;
         }else if (Wall* wall = dynamic_cast<Wall*>(*p)) {
             ld = wall->collision_detection(pos);

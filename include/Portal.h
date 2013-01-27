@@ -14,6 +14,7 @@ class Portal : public Item
         void set_other_portal(Portal* other_portal);
         virtual ~Portal(){};
         Portal* other_portal;
+        GLboolean open;
     protected:
         void movement(){};
     private:

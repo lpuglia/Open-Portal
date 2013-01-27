@@ -3,6 +3,7 @@
 Portal::Portal(vector3 pos, vector3 dir, GLboolean type, EntityList *entList)
         :Item(pos, dir, entList)
 {
+    open = false;
     if(type==true)
         texture = LoadTextureRGBA("texture/bluewormhole.png");
     else
@@ -45,6 +46,7 @@ void Portal::drawEntity(){
 }
 
 void Portal::set_position(vector3 pos, vector3 dir, vector3 up){
+    open=true;
     setPos(pos);
     setDir(dir);
     setUp(up);
@@ -52,7 +54,7 @@ void Portal::set_position(vector3 pos, vector3 dir, vector3 up){
 }
 
 Portal* Portal::teleport_detection(vector3 pos){
-    if (1.7 > pow(pos[0]-Portal::pos[0],2)+pow(pos[1]+0.9-Portal::pos[1],2)+pow(pos[2]-Portal::pos[2],2))
+    if (other_portal->open && 1.5 > pow(pos[0]-Portal::pos[0],2)+pow(pos[1]-Portal::pos[1],2)+pow(pos[2]-Portal::pos[2],2))
         return other_portal;
     return NULL;
 }

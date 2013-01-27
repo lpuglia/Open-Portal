@@ -9,6 +9,7 @@
 #include "Geometry.h"
 #include <vector>
 
+
 typedef std::list<Entity*> EntityList;
 
 class Item: public Entity

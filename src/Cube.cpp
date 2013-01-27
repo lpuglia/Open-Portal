@@ -60,13 +60,32 @@ void Cube::drawEntity(){
 }
 
 void Cube::movement(){
-	std::pair<std::vector<vector3>,std::vector<Floor*> > colliders = collision();
+  	std::vector<vector3> walls;
+	std::vector<Floor*> floors;
+	Portal* teleport_portal = collision(&walls, &floors);
+
+	if(teleport_portal!=NULL){
+        vector3 other_dir = teleport_portal->other_portal->getDir();
+        GLfloat rot_angle = asin(dir[0]*other_dir[2]-dir[2]*other_dir[0]);
+
+        if(teleport_portal->getDir()[1]==0.0){
+            pos = teleport_portal->getPos()+teleport_portal->getDir()*1.3;
+            dir[0] = teleport_portal->getDir()[0];
+            dir[2] = teleport_portal->getDir()[2];
+        }else
+            pos = teleport_portal->getPos()+teleport_portal->getDir()*1.3;
+
+        floor_collide=false;
+        v0 = vector3(0.0,0.0,0.0);
+        t0 = glutGet(GLUT_ELAPSED_TIME);
+        return;
+	}
 
     //find below floor
     std::vector<Floor*>::iterator its;
     Floor* below_floor;
     GLfloat below_height=-100.0;
-    for(its=colliders.second.begin(); its!=colliders.second.end(); its++){
+    for(its=floors.begin(); its!=floors.end(); its++){
         Floor* fl = *its;
         GLfloat floor_height = fl->get_height(pos);
         //cout << pos[1] << " " << floor_height << " " << below_height << endl;
@@ -78,7 +97,7 @@ void Cube::movement(){
 
     //colide reaction and landing
 	if(!floor_collide){
-        if(colliders.first.size()!=0 && !wall_collide){
+        if(walls.size()!=0 && !wall_collide){
             setCollide(false);
             wall_collide=true;
             setV0(vector3(0.0,0.0,0.0));
@@ -102,27 +121,25 @@ void Cube::movement(){
     }*/
 }
 
-std::pair<std::vector<vector3>,std::vector<Floor*> > Cube::collision(){
-    std::pair<std::vector<vector3>,std::vector<Floor*> > collider;
-    collider.first = std::vector<vector3>();
-    collider.second = std::vector<Floor*>();
-
+Portal* Cube::collision(std::vector<vector3>* walls, std::vector<Floor*>* floors){
+    Portal* teleport_portal=NULL;
     vector3 ld;
     vector3 zeros = vector3(0,0,0);
     list<Entity*>::iterator p;
     for (p = entityList->begin(), p++; p!=entityList->end(); p++){
-        if (Wall* wall = dynamic_cast<Wall*>(*p)) {
+        if (Portal* portal = dynamic_cast<Portal*>(*p)) {
+            teleport_portal = portal->teleport_detection(pos);
+            if(teleport_portal!=NULL) break;
+        }else if (Wall* wall = dynamic_cast<Wall*>(*p)) {
             ld = wall->collision_detection(pos);
-            if(ld!=zeros)
-                collider.first.push_back(ld);
+            if(ld!=zeros) walls->push_back(ld);
         }
         else if (Floor* floor = dynamic_cast<Floor*>(*p)) {
             ld = floor->collision_detection(pos);
-            if(ld!=zeros)
-                collider.second.push_back(floor);
+            if(ld!=zeros) floors->push_back(floor);
         }
     }
-    return collider;
+    return teleport_portal;
 }
 
 vector3 Cube::collision_detection(vector3 pos){
