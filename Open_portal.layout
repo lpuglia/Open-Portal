@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="include/Character.h" open="0" top="0" tabpos="2">
+		<Cursor position="1122" topLine="22" />
+	</File>
+	<File name="include/Entity.h" open="0" top="0" tabpos="0">
+		<Cursor position="521" topLine="17" />
+	</File>
+	<File name="include/Floor.h" open="1" top="0" tabpos="8">
+		<Cursor position="322" topLine="0" />
+	</File>
+	<File name="include/Geometry.h" open="1" top="1" tabpos="9">
+		<Cursor position="440" topLine="0" />
+	</File>
+	<File name="include/Item.h" open="0" top="0" tabpos="0">
+		<Cursor position="149" topLine="0" />
+	</File>
+	<File name="include/LevelDelimiter.h" open="1" top="0" tabpos="6">
+		<Cursor position="416" topLine="0" />
+	</File>
+	<File name="include/Portal.h" open="0" top="0" tabpos="4">
+		<Cursor position="428" topLine="0" />
+	</File>
+	<File name="include/Wall.h" open="1" top="0" tabpos="5">
+		<Cursor position="305" topLine="0" />
+	</File>
+	<File name="src/Character.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="4378" topLine="120" />
+	</File>
+	<File name="src/Entity.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1035" topLine="24" />
+	</File>
+	<File name="src/Floor.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="1665" topLine="21" />
+	</File>
+	<File name="src/Geometry.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="487" topLine="0" />
+	</File>
+	<File name="src/LevelDelimiter.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="3304" topLine="58" />
+	</File>
+	<File name="src/LevelManager.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="8141" topLine="132" />
+	</File>
+	<File name="src/Portal.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="1565" topLine="34" />
+	</File>
+	<File name="src/ViewManager.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="584" topLine="5" />
+	</File>
+	<File name="src/Wall.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="2751" topLine="43" />
+	</File>
+	<File name="src/Weapon.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="6133" topLine="118" />
+	</File>
+</CodeBlocks_layout_file>
