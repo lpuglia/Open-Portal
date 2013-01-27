@@ -70,7 +70,7 @@ void Cube::movement(){
         Floor* fl = *its;
         GLfloat floor_height = fl->get_height(pos);
         //cout << pos[1] << " " << floor_height << " " << below_height << endl;
-        if(floor_height-1.0<=pos[1] && floor_height>=below_height){
+        if(floor_height-1.0<=pos[1] && floor_height>=below_height && fl->getDir()[1]>0.0){
             below_floor=fl;
             below_height=floor_height;
         }

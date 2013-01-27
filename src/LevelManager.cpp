@@ -53,8 +53,8 @@ void LevelManager::init(int width, int height){
     entList.push_back(new Cube(vector3(-6.0,10.0,-6.0),vector3(4.0,0.0,3.0),&entList));
     entList.push_back(new Cube(vector3(-6.0,10.0,6.0),vector3(10.0,0.0,7.0),&entList));*/
 
-    entList.push_back(new Geometry(vector3(-20.0,-9.45,-11.1),vector3(0.0,-1.0,0.0),vector3(1.0,0.0,0.0),vector3(-20.0,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-20.0,10.0,0.0),"floor.png"));
-    entList.push_back(new Geometry(vector3(0.0,10.0,0.0),vector3(0.0,-1.0,0.0),vector3(1.0,0.0,0.0),vector3(-30.0,-30.0,0.0),vector3(30.0,-30.0,0.0),vector3(30.0,30.0,0.0),vector3(-30.0,30.0,0.0),"floor.png"));
+    //entList.push_back(new Geometry(vector3(-20.0,-9.45,-11.1),vector3(0.0,-1.0,0.0),vector3(1.0,0.0,0.0),vector3(-20.0,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-20.0,10.0,0.0),"floor.png"));
+    //entList.push_back(new Geometry(vector3(0.0,10.0,0.0),vector3(0.0,-1.0,0.0),vector3(1.0,0.0,0.0),vector3(-30.0,-30.0,0.0),vector3(30.0,-30.0,0.0),vector3(30.0,30.0,0.0),vector3(-30.0,30.0,0.0),"floor.png"));
     entList.push_back(new Bound());
 
     /*First Level */
@@ -75,6 +75,8 @@ void LevelManager::init(int width, int height){
     entList.push_back(new Floor(vector3(-20.0,-30.0,-10.0),vector3(0.0,1.0,0.0),vector3(1.0,0.0,0.0),vector3(-10.0,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"floor.png"));
     entList.push_back(new Floor(vector3(-20.0,-26.0,5.0),vector3(0.0,1.0,-0.5),vector3(1.0,0.0,0.0),vector3(-10.0,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"floor.png"));
     entList.push_back(new Floor(vector3(-20.0,-21.55,17.9),vector3(0.0,1.0,0.0),vector3(1.0,0.0,0.0),vector3(-4,-10.0,0.0),vector3(4.0,-10.0,0.0),vector3(4.0,10.0,0.0),vector3(-4.0,10.0,0.0),"floor.png"));
+    entList.push_back(new Floor(vector3(-20.0,-9.45,-11.1),vector3(0.0,-1.0,0.0),vector3(1.0,0.0,0.0),vector3(-20.0,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-20.0,10.0,0.0),"floor.png"));
+    entList.push_back(new Floor(vector3(0.0,10.0,0.0),vector3(0.0,-1.0,0.0),vector3(1.0,0.0,0.0),vector3(-30.0,-30.0,0.0),vector3(30.0,-30.0,0.0),vector3(30.0,30.0,0.0),vector3(-30.0,30.0,0.0),"floor.png"));
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     he->init(blue,orange);

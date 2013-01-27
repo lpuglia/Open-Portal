@@ -125,16 +125,20 @@ void Character::movement(){
         GLfloat rot_angle = asin(dir[0]*other_dir[2]-dir[2]*other_dir[0]);
 
         if(teleport_portal->getDir()[1]==0.0){
-            pos = teleport_portal->getPos()+teleport_portal->getDir()*2.0;
+            pos = teleport_portal->getPos()+teleport_portal->getDir()*1.5;
+            pos[1]-=0.9;
             dir[0] = teleport_portal->getDir()[0];
             dir[2] = teleport_portal->getDir()[2];
         }else
-            pos = teleport_portal->getPos()+teleport_portal->getDir()*3.0;
+            pos = teleport_portal->getPos()+teleport_portal->getDir()*2.5;
 
         dir = rotate_vector(dir, vector3(0.0, 1.0, 0.0), -rot_angle);
         dir.normalize();
+        if(moveBackward) dir = -dir;
         side = cross(-dir, up);
         side.normalize();
+
+        at = pos + dir;
 
         jump=true;
         v0 = vector3(0.0,0.0,0.0);
