@@ -267,16 +267,18 @@ void Character::takeEntity(){
     list<Entity*>::iterator p;
     for (p = entityList->begin(), p++; p!=entityList->end(); p++){
         if (!dynamic_cast<Bound*>(*p)){
-            vector3 pos = (*p)->getPos();
-            vector3 dist = Character::pos - pos;
-            GLfloat distLength = dist.length();
-            GLfloat angleCos = (dir[0]*dist[0]+dir[1]*dist[1]+dir[2]*dist[2])/(dirLength*distLength);
+            if(dynamic_cast<Cube*>(*p)){
+                vector3 pos = (*p)->getPos();
+                vector3 dist = Character::pos - pos;
+                GLfloat distLength = dist.length();
+                GLfloat angleCos = (dir[0]*dist[0]+dir[1]*dist[1]+dir[2]*dist[2])/(dirLength*distLength);
 
-            if(angleCos<-0.75 && distLength<3.0 && distLength<minDistLength){
-                    nearest = p;
-                    takenEntity[1] = *p;
-                    minDist = dist;
-                    minDistLength = distLength;
+                if(angleCos<-0.75 && distLength<3.0 && distLength<minDistLength){
+                        nearest = p;
+                        takenEntity[1] = *p;
+                        minDist = dist;
+                        minDistLength = distLength;
+                }
             }
         }else break;
     }
