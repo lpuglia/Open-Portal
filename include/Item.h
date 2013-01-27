@@ -6,6 +6,7 @@
 #include "Entity.h"
 #include "Wall.h"
 #include "Floor.h"
+#include "Geometry.h"
 #include <vector>
 
 typedef std::list<Entity*> EntityList;

@@ -130,6 +130,13 @@ void Weapon::shot_portal(vector3 pos, vector3 dir, vector3* portal_pos, vector3*
                 *portal_dir=floor->getDir();
                 *portal_up=floor->getUp();
             }
+        }else if (Geometry* geometry = dynamic_cast<Geometry*>(*p)) {
+            ld_pos = geometry->shot_detection(pos, dir, &min_dist);
+            if(ld_pos!=zeros){
+                *portal_pos=ld_pos;
+                *portal_dir=geometry->getDir();
+                *portal_up=geometry->getUp();
+            }
         }
     }
 }

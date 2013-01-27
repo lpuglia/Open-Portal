@@ -121,11 +121,21 @@ void Character::movement(){
 	std::vector<Floor*> floors;
 	Portal* teleport_portal = collision(&walls, &floors);
 	if(teleport_portal!=NULL){
-        pos = teleport_portal->getPos()+teleport_portal->getDir()*2;
-        dir = teleport_portal->getDir();
-        dir[1] = 0.0;
-        dir.normalize();
+        cout << dir << " " << at << endl;
+
+        vector3 other_dir = teleport_portal->other_portal->getDir();
+        GLfloat rot_angle = asin(dir[0]*other_dir[2]-dir[2]*other_dir[0]);
+
+        pos = teleport_portal->getPos()+teleport_portal->getDir()*2.5;
+        dir[0] = teleport_portal->getDir()[0];
+        dir[2] = teleport_portal->getDir()[2];
+
+        dir = rotate_vector(dir, vector3(0.0, 1.0, 0.0), -rot_angle);
         side = cross(-dir, up);
+
+        cout << dir << " " << at << endl;
+        jump=true;
+        t0 = glutGet(GLUT_ELAPSED_TIME);
         return;
 	}
 

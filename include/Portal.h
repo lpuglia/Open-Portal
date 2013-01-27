@@ -13,10 +13,10 @@ class Portal : public Item
         Portal* teleport_detection(vector3 pos);
         void set_other_portal(Portal* other_portal);
         virtual ~Portal(){};
+        Portal* other_portal;
     protected:
         void movement(){};
     private:
-        Portal* other_portal;
         GLuint listIndex;
         GLuint texture;
 
