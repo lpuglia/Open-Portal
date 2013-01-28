@@ -13,10 +13,10 @@ Character::Character(vector3 pos, GLfloat mass, EntityList *entList)
     jump = true; run = false;
     takenEntity[0]= new Weapon(entList);
     takenEntity[1]=NULL;
-    takenEntity[2]= new Interface();
 }
 
 void Character::init(Portal* blue, Portal* orange){
+    takenEntity[2]= new Interface(blue, orange);
     Character::blue = blue;
     Character::orange = orange;
     //cout << pos << endl;
@@ -249,12 +249,13 @@ Portal* Character::collision(std::vector<vector3>* walls, std::vector<Floor*>* f
 
 void Character::drawEntity(){
     glPushMatrix();
-    takenEntity[0]->drawEntity();
-    takenEntity[2]->drawEntity();
-    if(takenEntity[1]!=NULL){
-        takenEntity[1]->drawEntity();
-    }
-    glPopMatrix();
+    glDepthFunc(GL_ALWAYS);
+        glPushMatrix();
+            if(takenEntity[1]!=NULL) takenEntity[1]->drawEntity();
+        glPopMatrix();
+        takenEntity[0]->drawEntity();
+        takenEntity[2]->drawEntity();
+    glDepthFunc(GL_LESS);
     look();
 }
 

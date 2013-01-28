@@ -7,6 +7,7 @@
 #include "Wall.h"
 #include "Floor.h"
 #include "Geometry.h"
+#include "Entity.h"
 
 using namespace std;
 

@@ -1,17 +1,18 @@
 # depslib dependency file v1.0
-1359387086 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/main.cpp
+1359397725 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/main.cpp
 	<math.h>
 	<GL/glut.h>
 	<iostream>
 	"include/LevelManager.h"
 
-1358971404 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/LevelManager.h
+1359391779 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/LevelManager.h
 	"Item.h"
 	"ViewManager.h"
 	"Cube.h"
 	"Wall.h"
 	"Floor.h"
 	"Geometry.h"
+	"Entity.h"
 
 1359289100 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Item.h
 	<list>
@@ -48,7 +49,7 @@
 1352443019 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/ViewManager.h
 	"Character.h"
 
-1359243488 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Character.h
+1359395249 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Character.h
 	"Item.h"
 	"Cube.h"
 	"Weapon.h"
@@ -62,8 +63,9 @@
 1359234454 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Weapon.h
 	"Item.h"
 
-1359114876 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Interface.h
+1359398724 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Interface.h
 	"Item.h"
+	"Portal.h"
 
 1359286167 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Geometry.h
 	"LevelDelimiter.h"
@@ -80,23 +82,23 @@
 1359286051 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Geometry.cpp
 	"../include/Geometry.h"
 
-1359388145 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Interface.cpp
+1359399151 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Interface.cpp
 	"../include/Interface.h"
 
 1359200152 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Item.cpp
 	"../include/Item.h"
 
-1359387868 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/LevelDelimiter.cpp
+1359394006 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/LevelDelimiter.cpp
 	"../include/LevelDelimiter.h"
 
-1359388555 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/LevelManager.cpp
+1359397313 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/LevelManager.cpp
 	"../include/LevelManager.h"
 
 1352557601 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/PhysicsEngine.cpp
 	"../include/PhysicsEngine.h"
 	<stdio.h>
 
-1359388603 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Portal.cpp
+1359395759 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Portal.cpp
 	"../include/Portal.h"
 
 1359296786 /media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/include/Portal.h
@@ -108,9 +110,9 @@
 1359285992 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Wall.cpp
 	"../include/Wall.h"
 
-1359384358 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Weapon.cpp
+1359399767 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Weapon.cpp
 	"../include/Weapon.h"
 
-1359388452 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Character.cpp
+1359398842 source:/media/sda3/Uni/2 Magistrale/2° Anno/1 Ambienti Virtuali, Interattiva e Videogiochi/OpenGL/WorkSpace/Open Portal/src/Character.cpp
 	"../include/Character.h"
 

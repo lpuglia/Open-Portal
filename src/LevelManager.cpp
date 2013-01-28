@@ -11,18 +11,6 @@ int LevelManager::fps=0;
 
 void LevelManager::init(int width, int height){
 
-	glEnable(GL_CULL_FACE);
-
-    //texture manager
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_ALPHA_TEST);
-    glAlphaFunc( GL_GREATER, 0 );
-    glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-
-	//glClearColor(0.0, 0.0, 0.0, 0.0);
-
     glutDisplayFunc(display);
 	glutMouseFunc(mouse);
     glutKeyboardFunc(keyboard);
@@ -31,6 +19,13 @@ void LevelManager::init(int width, int height){
     glutSpecialFunc(specialKeyboard);
 	glutIdleFunc(idle);
 	glutReshapeFunc(reshape);
+	glEnable(GL_CULL_FACE);
+
+    //texture manager
+    glEnable(GL_DEPTH_TEST);
+    glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
     LevelManager::width=width;
     LevelManager::height=height;
@@ -43,27 +38,8 @@ void LevelManager::init(int width, int height){
     blue->set_other_portal(orange);
     orange->set_other_portal(blue);
     entList.push_back(orange);
-
     ///TODO "LOAD LEVEL ELEMENTS"
     entList.push_back(new Cube(vector3(3.0,10.0,3.0),vector3(0.0,0.0,1.0),&entList));
-    /*entList.push_back(new Cube(vector3(3.0,10.0,-3.0),vector3(1.0,0.0,1.0),&entList));
-    entList.push_back(new Cube(vector3(-3.0,10.0,-3.0),vector3(1.0,0.0,0.0),&entList));
-    entList.push_back(new Cube(vector3(-3.0,10.0,3.0),vector3(2.0,0.0,1.0),&entList));
-    entList.push_back(new Cube(vector3(6.0,10.0,3.0),vector3(4.0,0.0,1.0),&entList));
-    entList.push_back(new Cube(vector3(6.0,10.0,-3.0),vector3(1.0,0.0,4.0),&entList));
-    entList.push_back(new Cube(vector3(-6.0,10.0,-3.0),vector3(2.0,0.0,5.0),&entList));
-    entList.push_back(new Cube(vector3(-6.0,10.0,3.0),vector3(4.0,0.0,5.0),&entList));
-    entList.push_back(new Cube(vector3(3.0,10.0,6.0),vector3(0.0,0.0,1.0),&entList));
-    entList.push_back(new Cube(vector3(3.0,10.0,-6.0),vector3(0.0,0.0,6.0),&entList));
-    entList.push_back(new Cube(vector3(-3.0,10.0,-6.0),vector3(6.0,0.0,1.0),&entList));
-    entList.push_back(new Cube(vector3(-3.0,10.0,6.0),vector3(7.0,0.0,1.0),&entList));
-    entList.push_back(new Cube(vector3(6.0,10.0,6.0),vector3(8.0,0.0,5.0),&entList));
-    entList.push_back(new Cube(vector3(6.0,10.0,-6.0),vector3(6.0,0.0,1.0),&entList));
-    entList.push_back(new Cube(vector3(-6.0,10.0,-6.0),vector3(4.0,0.0,3.0),&entList));
-    entList.push_back(new Cube(vector3(-6.0,10.0,6.0),vector3(10.0,0.0,7.0),&entList));*/
-
-    //entList.push_back(new Geometry(vector3(-20.0,-9.45,-11.1),vector3(0.0,-1.0,0.0),vector3(1.0,0.0,0.0),vector3(-20.0,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-20.0,10.0,0.0),"floor.png"));
-    //entList.push_back(new Geometry(vector3(0.0,10.0,0.0),vector3(0.0,-1.0,0.0),vector3(1.0,0.0,0.0),vector3(-30.0,-30.0,0.0),vector3(30.0,-30.0,0.0),vector3(30.0,30.0,0.0),vector3(-30.0,30.0,0.0),"floor.png"));
     entList.push_back(new Bound());
 
     /*First Level */
@@ -77,7 +53,6 @@ void LevelManager::init(int width, int height){
     entList.push_back(new Wall(vector3(-30.0,0.0,0.0),vector3(1.0,0.0,0.0),vector3(-20.0,-30.0,0.0),vector3(20.0,-30.0,0.0),vector3(20.0,10.0,0.0),vector3(-20.0,10.0,0.0),"wall.png"));
     entList.push_back(new Wall(vector3(-10.0,-10.0,0.0),vector3(-1.0,0.0,0.0),vector3(-10.0,-20.0,0.0),vector3(10.0,-20.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"wall.png"));
 
-    //entList.push_back(new Floor(vector3(0.0,0.5,0.0),vector3(0.0,1.0,0.0),vector3(1.0,0.0,0.0),vector3(-2.0,-2.0,0.0),vector3(2.0,-2.0,0.0),vector3(2.0,2.0,0.0),vector3(-2.0,2.0,0.0),vector3(0.0,0.0,0.0)));
     entList.push_back(new Floor(vector3(0.0,0.0,0.0),vector3(0.0,1.0,0.0),vector3(1.0,0.0,0.0),vector3(-10.0,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-10.0,10.0,0.0),"floor.png"));
     entList.push_back(new Floor(vector3(-20.0,-5.0,0.0),vector3(0.0,1.0,0.5),vector3(1.0,0.0,0.0),vector3(-11.185,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-11.185,10.0,0.0),"floor.png"));
     entList.push_back(new Floor(vector3(-20.0,0.0,-15.0),vector3(0.0,1.0,0.0),vector3(1.0,0.0,0.0),vector3(-5,-10.0,0.0),vector3(5.0,-10.0,0.0),vector3(5.0,10.0,0.0),vector3(-5.0,10.0,0.0),"floor.png"));
@@ -87,7 +62,6 @@ void LevelManager::init(int width, int height){
     entList.push_back(new Floor(vector3(-20.0,-9.45,-11.1),vector3(0.0,-1.0,0.0),vector3(1.0,0.0,0.0),vector3(-20.0,-10.0,0.0),vector3(10.0,-10.0,0.0),vector3(10.0,10.0,0.0),vector3(-20.0,10.0,0.0),"floor.png"));
     entList.push_back(new Floor(vector3(0.0,10.0,0.0),vector3(0.0,-1.0,0.0),vector3(1.0,0.0,0.0),vector3(-30.0,-30.0,0.0),vector3(30.0,-30.0,0.0),vector3(30.0,30.0,0.0),vector3(-30.0,30.0,0.0),"floor.png"));
 
-    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     he->init(blue,orange);
 }
 
@@ -131,18 +105,40 @@ void LevelManager::specialKeyboard(int key, int x, int y){
     he->specialKeyboard(key);
 }
 
+
+GLuint loadTexture(char* textName){
+	GLuint idTexture;
+	FREE_IMAGE_FORMAT fifmt = FreeImage_GetFileType(textName, 0);
+	FIBITMAP *dib = FreeImage_Load(fifmt, textName,0);
+	if( dib != NULL ){
+		glGenTextures( 1, &idTexture );
+		glBindTexture( GL_TEXTURE_2D, idTexture );
+		BYTE *pixels = (BYTE*)FreeImage_GetBits(dib);
+		glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA,
+               FreeImage_GetWidth(dib), FreeImage_GetHeight(dib),
+                0, GL_BGRA, GL_UNSIGNED_BYTE, pixels );
+
+		glTexParameteri( GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+		glTexParameteri( GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+		FreeImage_Unload(dib);
+	}
+	return idTexture;
+}
+
 void LevelManager::display(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-    list<Entity*>::iterator p = entList.begin();
-    (*p)->drawEntity();
+    dynamic_cast<Character*>(*entList.begin())->look();
+    list<Entity*>::iterator p = entList.end();
 
-    for (p++; p!=entList.end(); p++){
+    for (p--; p!=entList.begin(); p--){
         glPushMatrix();
         (*p)->drawEntity();
         glPopMatrix();
     }
+	glLoadIdentity();
+    (*entList.begin())->drawEntity();
 
 	glutSwapBuffers();
 }

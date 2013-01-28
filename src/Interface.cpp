@@ -1,7 +1,10 @@
 #include "../include/Interface.h"
 
-Interface::Interface() {
-    ui={-0.1,-0.1,-0.5, 0.1,-0.1,-0.5, 0.1,0.1,-0.5, -0.1,0.1,-0.5};
+Interface::Interface(Portal* blue, Portal* orange) {
+    Interface::blue = blue;
+    Interface::orange = orange;
+
+    ui={-0.1,-0.1,-0.7, 0.1,-0.1,-0.7, 0.1,0.1,-0.7, -0.1,0.1,-0.7};
     uiblue = LoadTextureRGBA("texture/uiblue.png");
     uiorange = LoadTextureRGBA("texture/uiorange.png");
     uiblueorange = LoadTextureRGBA("texture/uiblueorange.png");
@@ -10,7 +13,6 @@ Interface::Interface() {
     listIndex = glGenLists(1);
     glNewList(listIndex, GL_COMPILE);
         glEnable(GL_TEXTURE_2D);
-            glBindTexture(GL_TEXTURE_2D, uiblueorange);
             glColor3f(1.0f, 1.0f, 1.0f);
             glEnable (GL_BLEND);
                 glBegin(GL_QUADS);
@@ -34,6 +36,11 @@ Interface::~Interface()
 }
 
 void Interface::drawEntity(){
+    if(!blue->open && !orange->open) glBindTexture(GL_TEXTURE_2D, uiblueorange);
+    else if(blue->open && !orange->open) glBindTexture(GL_TEXTURE_2D, uiorange);
+    else if(!blue->open && orange->open) glBindTexture(GL_TEXTURE_2D, uiblue);
+    else if(blue->open && orange->open) glBindTexture(GL_TEXTURE_2D, uivoid);
+
     glCallList(listIndex);
 }
 

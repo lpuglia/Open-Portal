@@ -20,8 +20,8 @@ class Character: public Item
         void specialKeyboard(int key);
         void movement();
         void drawEntity();
-        virtual void mouseMotion(int x, int y){};
-        virtual void look(){};
+        virtual void mouseMotion(int x, int y)=0;
+        virtual void look()=0;
         Entity* takenEntity[3];
         void init(Portal* blue, Portal* orange);
 
