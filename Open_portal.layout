@@ -2,57 +2,72 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="include/Character.h" open="0" top="0" tabpos="2">
-		<Cursor position="1122" topLine="22" />
+		<Cursor position="139" topLine="0" />
+	</File>
+	<File name="include/Cube.h" open="0" top="0" tabpos="0">
+		<Cursor position="70" topLine="0" />
 	</File>
 	<File name="include/Entity.h" open="0" top="0" tabpos="0">
 		<Cursor position="521" topLine="17" />
 	</File>
-	<File name="include/Floor.h" open="1" top="0" tabpos="8">
+	<File name="include/Floor.h" open="0" top="0" tabpos="8">
 		<Cursor position="322" topLine="0" />
 	</File>
-	<File name="include/Geometry.h" open="1" top="1" tabpos="9">
-		<Cursor position="440" topLine="0" />
+	<File name="include/Geometry.h" open="0" top="0" tabpos="9">
+		<Cursor position="461" topLine="0" />
 	</File>
 	<File name="include/Item.h" open="0" top="0" tabpos="0">
-		<Cursor position="149" topLine="0" />
+		<Cursor position="171" topLine="0" />
 	</File>
-	<File name="include/LevelDelimiter.h" open="1" top="0" tabpos="6">
+	<File name="include/LevelDelimiter.h" open="0" top="0" tabpos="6">
 		<Cursor position="416" topLine="0" />
 	</File>
-	<File name="include/Portal.h" open="0" top="0" tabpos="4">
-		<Cursor position="428" topLine="0" />
+	<File name="include/Portal.h" open="0" top="0" tabpos="6">
+		<Cursor position="561" topLine="2" />
 	</File>
-	<File name="include/Wall.h" open="1" top="0" tabpos="5">
+	<File name="include/Wall.h" open="0" top="0" tabpos="5">
 		<Cursor position="305" topLine="0" />
 	</File>
-	<File name="src/Character.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="4378" topLine="120" />
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="478" topLine="0" />
 	</File>
-	<File name="src/Entity.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1035" topLine="24" />
+	<File name="src/Character.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="2003" topLine="48" />
 	</File>
-	<File name="src/Floor.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="1665" topLine="21" />
+	<File name="src/Cube.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="1283" topLine="23" />
 	</File>
-	<File name="src/Geometry.cpp" open="1" top="0" tabpos="3">
+	<File name="src/Entity.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="3955" topLine="121" />
+	</File>
+	<File name="src/Floor.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="666" topLine="7" />
+	</File>
+	<File name="src/Geometry.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="487" topLine="0" />
 	</File>
-	<File name="src/LevelDelimiter.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="3304" topLine="58" />
+	<File name="src/Interface.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="846" topLine="0" />
 	</File>
-	<File name="src/LevelManager.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="8141" topLine="132" />
+	<File name="src/Item.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="471" topLine="0" />
 	</File>
-	<File name="src/Portal.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1565" topLine="34" />
+	<File name="src/LevelDelimiter.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="2254" topLine="35" />
+	</File>
+	<File name="src/LevelManager.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="7787" topLine="118" />
+	</File>
+	<File name="src/Portal.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="233" topLine="0" />
 	</File>
 	<File name="src/ViewManager.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="584" topLine="5" />
+		<Cursor position="796" topLine="5" />
 	</File>
-	<File name="src/Wall.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="2751" topLine="43" />
+	<File name="src/Wall.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="28" topLine="0" />
 	</File>
-	<File name="src/Weapon.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="6133" topLine="118" />
+	<File name="src/Weapon.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="3330" topLine="61" />
 	</File>
 </CodeBlocks_layout_file>

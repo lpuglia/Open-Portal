@@ -9,16 +9,12 @@ Portal::Portal(vector3 pos, vector3 dir, GLboolean type, EntityList *entList)
     else
         texture = LoadTextureRGBA("texture/orangewormhole.png");
     //ctor
-
+    //alpha test
     listIndex = glGenLists(1);
     glNewList(listIndex, GL_COMPILE);
         glEnable(GL_TEXTURE_2D);
             glBindTexture(GL_TEXTURE_2D, texture);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            glColor3f(1.0f, 1.0f, 1.0f);
-            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-            glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            //glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
             glEnable (GL_BLEND);
                 glBegin(GL_QUADS);
                     glTexCoord2f(0.0, 0.0);

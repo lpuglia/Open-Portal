@@ -21,10 +21,6 @@ Weapon::Weapon(EntityList *entList)
     glNewList(listIndex, GL_COMPILE);
         glEnable(GL_TEXTURE_2D);
             glBindTexture(GL_TEXTURE_2D, texgun1);
-            glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            glColor3f(1.0f, 1.0f, 1.0f);
             glBegin(GL_QUADS);
                 glTexCoord2f(0.0, 0.0);
                 glVertex3f(gun1[0], gun1[1], gun1[2]);
@@ -37,9 +33,6 @@ Weapon::Weapon(EntityList *entList)
             glEnd();
 
             glBindTexture(GL_TEXTURE_2D, texgun2);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            glColor3f(1.0f, 1.0f, 1.0f);
             glBegin(GL_QUADS);
                 glTexCoord2f(0.0, 0.0);
                 glVertex3f(gun2[0], gun2[1], gun2[2]);
@@ -52,9 +45,6 @@ Weapon::Weapon(EntityList *entList)
             glEnd();
 
             glBindTexture(GL_TEXTURE_2D, texgun3);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            glColor3f(1.0f, 1.0f, 1.0f);
             glBegin(GL_QUADS);
                 glTexCoord2f(0.0, 0.0);
                 glVertex3f(gun3[0], gun3[1], gun3[2]);
@@ -66,9 +56,6 @@ Weapon::Weapon(EntityList *entList)
                 glVertex3f(gun3[9], gun3[10], gun3[11]);
             glEnd();
             glBindTexture(GL_TEXTURE_2D, texgun3);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            glColor3f(1.0f, 1.0f, 1.0f);
             glBegin(GL_QUADS);
                 glTexCoord2f(0.0, 0.0);
                 glVertex3f(gun4[0], gun4[1], gun4[2]);
@@ -81,12 +68,7 @@ Weapon::Weapon(EntityList *entList)
             glEnd();
 
                 glBindTexture(GL_TEXTURE_2D, texgun5);
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-                glColor3f(1.0f, 1.0f, 1.0f);
-                glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-                glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-                glEnable (GL_BLEND);
+                    glEnable (GL_BLEND);
                     glBegin(GL_QUADS);
                         glTexCoord2f(0.0, 0.0);
                         glVertex3f(gun5[0], gun5[1], gun5[2]);

@@ -250,7 +250,7 @@ Portal* Character::collision(std::vector<vector3>* walls, std::vector<Floor*>* f
 void Character::drawEntity(){
     glPushMatrix();
     takenEntity[0]->drawEntity();
-    //takenEntity[2]->drawEntity();
+    takenEntity[2]->drawEntity();
     if(takenEntity[1]!=NULL){
         takenEntity[1]->drawEntity();
     }

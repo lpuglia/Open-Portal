@@ -32,10 +32,6 @@ void Cube::initialize(){
     glNewList(listIndex, GL_COMPILE);
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, texture);
-        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        glColor3f(1.0f, 1.0f, 1.0f);
 
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
         glEnableClientState(GL_VERTEX_ARRAY);

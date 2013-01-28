@@ -11,8 +11,17 @@ int LevelManager::fps=0;
 
 void LevelManager::init(int width, int height){
 
-	glEnable(GL_DEPTH_TEST);
-	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glEnable(GL_CULL_FACE);
+
+    //texture manager
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_ALPHA_TEST);
+    glAlphaFunc( GL_GREATER, 0 );
+    glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
+	//glClearColor(0.0, 0.0, 0.0, 0.0);
 
     glutDisplayFunc(display);
 	glutMouseFunc(mouse);

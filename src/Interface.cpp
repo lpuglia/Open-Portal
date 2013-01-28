@@ -11,13 +11,8 @@ Interface::Interface() {
     glNewList(listIndex, GL_COMPILE);
         glEnable(GL_TEXTURE_2D);
             glBindTexture(GL_TEXTURE_2D, uiblueorange);
-            glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
             glColor3f(1.0f, 1.0f, 1.0f);
             glEnable (GL_BLEND);
-                glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-                glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 glBegin(GL_QUADS);
                     glTexCoord2f(0.0, 0.0);
                     glVertex3f(ui[0], ui[1], ui[2]);
