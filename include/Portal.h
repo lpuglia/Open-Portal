@@ -1,8 +1,10 @@
 #ifndef PORTAL_H
 #define PORTAL_H
 
-#include "Item.h"
+#define GL_GLEXT_PROTOTYPES //set up GL extension
 
+#include "Item.h"
+#include "glext.h"
 
 class Portal : public Item
 {
@@ -15,12 +17,19 @@ class Portal : public Item
         virtual ~Portal(){};
         Portal* other_portal;
         GLboolean open;
+        void setup_offscreen_rendering(GLuint fbo);
+        GLuint mask;
+        GLuint texture;
+        GLuint texture_open;
+        GLuint hole_texture;
+        GLuint fbo;
+        void make_texture();
+        GLenum param;
     protected:
         void movement(){};
     private:
+        GLboolean type;
         GLuint listIndex;
-        GLuint texture;
-
 };
 
 #endif // PORTAL_H

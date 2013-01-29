@@ -24,25 +24,12 @@ LevelDelimiter::LevelDelimiter(vector3 pos, vector3 dir, vector3 up, vector3 ver
     length = sqrt(pow((vertex1[0]-vertex2[0]),2)+pow((vertex1[1]-vertex2[1]),2)+pow((vertex1[2]-vertex2[2]),2));
     height = sqrt(pow((vertex1[0]-vertex4[0]),2)+pow((vertex1[1]-vertex4[1]),2)+pow((vertex1[2]-vertex4[2]),2));
 
-    /*colors={color[0],color[1],color[2],
-            color[0],color[1],color[2],
-            color[0],color[1],color[2],
-            color[0],color[1],color[2]};*/
-
     faceIndices={0,1,2,3};
     texture = LoadTextureRAW("texture/"+texture_path);
 
 }
 
 void LevelDelimiter::drawEntity(){
-    /*glEnableClientState(GL_COLOR_ARRAY);
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glVertexPointer(3, GL_FLOAT, 0, vertices);
-    glColorPointer(3, GL_FLOAT, 0, colors);
-    glDrawElements(GL_QUADS, 12, GL_UNSIGNED_BYTE, faceIndices);
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_COLOR_ARRAY);*/
-
   	glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture);
     glColor3f(1.0f, 1.0f, 1.0f);

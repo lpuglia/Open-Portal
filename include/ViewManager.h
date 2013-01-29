@@ -7,7 +7,7 @@ class ViewManager: public Character
 {
     public:
         ViewManager(){};
-        ViewManager(vector3 pos, GLfloat peak, int width, int height, EntityList *entList);
+        ViewManager(vector3 pos, GLfloat peak, EntityList *entList);
         void look();
         void mouseMotion(int x, int y);
 
@@ -15,6 +15,8 @@ class ViewManager: public Character
     protected:
         GLfloat peak;
         int hWidth, hHeight;
+    private:
+        vector3 view;
 
 };
 

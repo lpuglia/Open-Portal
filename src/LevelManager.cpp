@@ -1,15 +1,15 @@
 #include "../include/LevelManager.h"
 
 Character* LevelManager::he;
+Portal* LevelManager::blue;
+Portal* LevelManager::orange;
 EntityList LevelManager::entList;
-int LevelManager::width;
-int LevelManager::height;
 int LevelManager::frameCount=0;
 int LevelManager::currentTime=0;
 int LevelManager::previousTime=0;
 int LevelManager::fps=0;
 
-void LevelManager::init(int width, int height){
+void LevelManager::init(){
 
     glutDisplayFunc(display);
 	glutMouseFunc(mouse);
@@ -27,17 +27,15 @@ void LevelManager::init(int width, int height){
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
-    LevelManager::width=width;
-    LevelManager::height=height;
-
-    he = new ViewManager(vector3(1.0,0.0,5.0), 1.80, width, height, &entList);
+    he = new ViewManager(vector3(1.0,0.0,5.0), 1.80, &entList);
     entList.push_back(he);
-    Portal* blue = new Portal(vector3(0.0,100.0,0.0),vector3(0.0,0.0,-1.0),true,&entList);
+    blue = new Portal(vector3(0.0,100.0,0.0),vector3(0.0,0.0,-1.0),true,&entList);
     entList.push_back(blue);
-    Portal* orange = new Portal(vector3(0.0,100.0,0.0),vector3(0.0,0.0,-1.0),false,&entList);
+    orange = new Portal(vector3(0.0,100.0,0.0),vector3(0.0,0.0,-1.0),false,&entList);
     blue->set_other_portal(orange);
     orange->set_other_portal(blue);
     entList.push_back(orange);
+
     ///TODO "LOAD LEVEL ELEMENTS"
     entList.push_back(new Cube(vector3(3.0,10.0,3.0),vector3(0.0,0.0,1.0),&entList));
     entList.push_back(new Bound());
@@ -66,7 +64,7 @@ void LevelManager::init(int width, int height){
 }
 
 void LevelManager::reshape(int w, int h){
-	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+    glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(60, (GLfloat)w / (GLfloat)h, 0.5, 100.0);
@@ -105,26 +103,6 @@ void LevelManager::specialKeyboard(int key, int x, int y){
     he->specialKeyboard(key);
 }
 
-
-GLuint loadTexture(char* textName){
-	GLuint idTexture;
-	FREE_IMAGE_FORMAT fifmt = FreeImage_GetFileType(textName, 0);
-	FIBITMAP *dib = FreeImage_Load(fifmt, textName,0);
-	if( dib != NULL ){
-		glGenTextures( 1, &idTexture );
-		glBindTexture( GL_TEXTURE_2D, idTexture );
-		BYTE *pixels = (BYTE*)FreeImage_GetBits(dib);
-		glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA,
-               FreeImage_GetWidth(dib), FreeImage_GetHeight(dib),
-                0, GL_BGRA, GL_UNSIGNED_BYTE, pixels );
-
-		glTexParameteri( GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-		FreeImage_Unload(dib);
-	}
-	return idTexture;
-}
-
 void LevelManager::display(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
@@ -137,6 +115,23 @@ void LevelManager::display(){
         (*p)->drawEntity();
         glPopMatrix();
     }
+
+    blue->make_texture();
+    orange->make_texture();
+	/*glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, blue->hole_texture);
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 0.0);
+            glVertex3f(-3.0, 0.0, 0.0);
+            glTexCoord2f(1.0, 0.0);
+            glVertex3f(3.0, 0.0, 0.0);
+            glTexCoord2f(1.0, 1.0);
+            glVertex3f(3.0, 5.0, 0.0);
+            glTexCoord2f(0.0, 1.0);
+            glVertex3f(-3.0, 5.0, 0.0);
+        glEnd();
+    glDisable(GL_TEXTURE_2D);*/
+
 	glLoadIdentity();
     (*entList.begin())->drawEntity();
 

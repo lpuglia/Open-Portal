@@ -24,12 +24,12 @@ class Character: public Item
         virtual void look()=0;
         Entity* takenEntity[3];
         void init(Portal* blue, Portal* orange);
+        GLfloat dir1;
 
     protected:
         vector3 releaseForce;
         GLfloat shotForce;
         vector3 at;
-        GLfloat dir1;
         GLboolean moveForward, moveBackward, moveRight, moveLeft, run, jump;
         GLfloat FB,RL;
 
