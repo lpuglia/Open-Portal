@@ -5,8 +5,10 @@ Geometry::Geometry(vector3 pos, vector3 dir, vector3 up, vector3 vertex1, vector
 {
     GLfloat orizzontal = ((int)length)/2;
     GLfloat vertical = ((int)height)/2;
-    texcoords={ 0.0,0.0,
+    GLfloat texc[8]={ 0.0,0.0,
             orizzontal,0.0,
             orizzontal,vertical,
             0.0,vertical};
+    memcpy(texcoords, texc, sizeof(GLfloat)*8);
+
 }

@@ -8,11 +8,13 @@ Floor::Floor(vector3 pos, vector3 dir, vector3 up, vector3 vertex1, vector3 vert
     const_term = dir[0]*vertices[0]+dir[1]*vertices[1]+dir[2]*vertices[2];
     GLfloat orizzontal = ((int)length)/2;
     GLfloat vertical = ((int)height)/2;
-    texcoords={ 0.0,0.0,
+    // FIXME: avoid setting texcoords (which is an already instanced array)
+    //        with an init-like construct
+    GLfloat texc[8]={ 0.0,0.0,
             orizzontal,0.0,
             orizzontal,vertical,
             0.0,vertical};
-
+    memcpy(texcoords, texc, sizeof(GLfloat)*8);
 }
 
 void Floor::build_bounding_box(){

@@ -3,8 +3,9 @@
 Interface::Interface(Portal* blue, Portal* orange) {
     Interface::blue = blue;
     Interface::orange = orange;
+    GLfloat uic[] = {-0.1,-0.1,-0.7, 0.1,-0.1,-0.7, 0.1,0.1,-0.7, -0.1,0.1,-0.7};
+    memcpy(ui, uic, sizeof(GLfloat)*12);
 
-    ui={-0.1,-0.1,-0.7, 0.1,-0.1,-0.7, 0.1,0.1,-0.7, -0.1,0.1,-0.7};
     uiblue = LoadTextureRGBA("texture/uiblue.png");
     uiorange = LoadTextureRGBA("texture/uiorange.png");
     uiblueorange = LoadTextureRGBA("texture/uiblueorange.png");

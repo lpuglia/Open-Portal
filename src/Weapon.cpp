@@ -3,12 +3,18 @@
 Weapon::Weapon(EntityList *entList)
     :Item(vector3(0.0,0.0,0.0),vector3(0.0,0.0,-1.0), entList)
 {
-    gun1={0.4,-1.0,-0.1, 0.8,-1.0,-0.1, 0.8,-0.5,-1.3, 0.4,-0.5,-1.3};
-    gun2={0.4,-2.0,0.1, 0.4,-1.0,-0.1, 0.4,-0.5,-1.3, 0.4,-1.0,-1.3};
-    gun3={0.5,-0.6,-1.3, 0.7,-0.6,-1.3, 0.7,-0.5,-1.5, 0.5,-0.5,-1.5};
-    gun4={0.5,-0.6,-1.3, 0.5,-0.5,-1.5, 0.5,-1.0,-1.5, 0.5,-1.0,-1.5};
-    gun5={0.3,-0.7,-1.5, 0.8,-0.7,-1.5, 0.8,-0.3,-1.5, 0.3,-0.3,-1.5};
-    texcoords = { 0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0};
+    GLfloat gun1c[]={0.4,-1.0,-0.1, 0.8,-1.0,-0.1, 0.8,-0.5,-1.3, 0.4,-0.5,-1.3};
+    GLfloat gun2c[]={0.4,-2.0,0.1, 0.4,-1.0,-0.1, 0.4,-0.5,-1.3, 0.4,-1.0,-1.3};
+    GLfloat gun3c[]={0.5,-0.6,-1.3, 0.7,-0.6,-1.3, 0.7,-0.5,-1.5, 0.5,-0.5,-1.5};
+    GLfloat gun4c[]={0.5,-0.6,-1.3, 0.5,-0.5,-1.5, 0.5,-1.0,-1.5, 0.5,-1.0,-1.5};
+    GLfloat gun5c[]={0.3,-0.7,-1.5, 0.8,-0.7,-1.5, 0.8,-0.3,-1.5, 0.3,-0.3,-1.5};
+    GLfloat texcoordsc[] = { 0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0};
+    memcpy(gun1, gun1c, sizeof(GLfloat)*12);
+    memcpy(gun2, gun2c, sizeof(GLfloat)*12);
+    memcpy(gun3, gun3c, sizeof(GLfloat)*12);
+    memcpy(gun4, gun4c, sizeof(GLfloat)*12);
+    memcpy(gun5, gun5c, sizeof(GLfloat)*12);
+    memcpy(texcoords, texcoordsc, sizeof(GLfloat)*8);
 
     texgun1 = LoadTextureRAW("texture/gun1.png");
     texgun2 = LoadTextureRAW("texture/gun2.png");

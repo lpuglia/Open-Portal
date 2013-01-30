@@ -30,7 +30,11 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="/home/mario/devel/Open-Portal/" />
 		</Compiler>
+		<Linker>
+			<Add option="-lglut -lfreeimage -lGLU" />
+		</Linker>
 		<Unit filename="include/Character.h" />
 		<Unit filename="include/Cube.h" />
 		<Unit filename="include/Entity.h" />
@@ -45,6 +49,7 @@
 		<Unit filename="include/ViewManager.h" />
 		<Unit filename="include/Wall.h" />
 		<Unit filename="include/Weapon.h" />
+		<Unit filename="include/glext.h" />
 		<Unit filename="include/weapon.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Character.cpp" />
@@ -62,7 +67,9 @@
 		<Unit filename="src/Wall.cpp" />
 		<Unit filename="src/Weapon.cpp" />
 		<Extensions>
-			<code_completion />
+			<code_completion>
+				<search_path add="cml" />
+			</code_completion>
 			<debugger />
 		</Extensions>
 	</Project>

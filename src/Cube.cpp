@@ -3,21 +3,35 @@
 Cube::Cube(vector3 pos, vector3 dir, EntityList *entList)
     :Item(pos, dir, 5.0, vector3(0.0,0.0,0.0),entList)
 {
+
     GLfloat vert[48] =
      {-0.5f, 0.0f, 0.5f,   0.5f, 0.0f, 0.5f,   0.5f, 1.0f, 0.5f,  -0.5f, 1.0f, 0.5f,
       -0.5f, 1.0f, -0.5f,  0.5f, 1.0f, -0.5f,  0.5f, 0.0f, -0.5f, -0.5f, 0.0f, -0.5f,
        0.5f, 0.0f, 0.5f,   0.5f, 0.0f, -0.5f,  0.5f, 1.0f, -0.5f,  0.5f, 1.0f, 0.5f,
        -0.5f, 0.0f, -0.5f,  -0.5f, 0.0f, 0.5f,  -0.5f, 1.0f, 0.5f, -0.5f, 1.0f, -0.5f
-      }; vertices=vert;
+      };
+
+    // BUG: by assigning class member (pointer) to local variable, it will be valid
+    // only until the variable is valid in the scope. I.e. until this function exits.
+    //vertices=vert;
+    vertices = new GLfloat[48];
+    memcpy(vertices, vert, sizeof(GLfloat)*48);
 
     GLfloat texc[32] = { 0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0,
                       0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0,
                       0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0,
                       0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0,1.0
-                    }; texcoords=texc;
+                    };
+    // BUG: same as above
+    //texcoords=texc;
+    texcoords = new GLfloat[48];
+    memcpy(texcoords, texc, sizeof(GLfloat)*32);
 
     GLubyte cind[24] = {0,1,2,3, 4,5,6,7, 3,2,5,4, 7,6,1,0,  8,9,10,11, 12,13,14,15};
-    cubeIndices=cind;
+    // BUG: same as above
+    //cubeIndices=cind;
+    cubeIndices = new GLubyte[24];
+    memcpy(cubeIndices, cind, sizeof(GLubyte)*24);
 
     init = false;
     floor_collide=false;

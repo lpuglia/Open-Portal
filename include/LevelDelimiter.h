@@ -18,7 +18,7 @@ class LevelDelimiter: public Entity
         vector3 surfacePosition;
         GLfloat length;
         GLfloat height;
-        GLubyte faceIndices[12];
+        GLubyte faceIndices[4];
         GLfloat texcoords[8];
     private:
         virtual void build_bounding_box()=0;
