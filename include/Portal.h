@@ -28,6 +28,7 @@ class Portal : public Item
     protected:
         void movement(){};
     private:
+        GLuint size;
         GLboolean type;
         GLuint listIndex;
 };

@@ -16,6 +16,7 @@ Portal::Portal(vector3 pos, vector3 dir, GLboolean type, EntityList *entList)
         texture_open = LoadTextureRGBA("texture/orangewormholeopen.png");
     }
     param=GL_REPLACE;
+    size=512; //px
 
     listIndex = glGenLists(1);
     glNewList(listIndex, GL_COMPILE);
@@ -24,22 +25,22 @@ Portal::Portal(vector3 pos, vector3 dir, GLboolean type, EntityList *entList)
                 glMultiTexCoord2f(GL_TEXTURE0, 0.0, 0.0);
                 glMultiTexCoord2f(GL_TEXTURE1, 0.0, 0.0);
                 glMultiTexCoord2f(GL_TEXTURE2, 0.0, 0.0);
-                glVertex3f(-0.8, -1.4, 0.0);
+                glVertex3f(-0.9, -1.4, 0.0);
 
                 glMultiTexCoord2f(GL_TEXTURE0, 1.0, 0.0);
                 glMultiTexCoord2f(GL_TEXTURE1, 1.0, 0.0);
                 glMultiTexCoord2f(GL_TEXTURE2, 1.0, 0.0);
-                glVertex3f(0.8, -1.4, 0.0);
+                glVertex3f(0.9, -1.4, 0.0);
 
                 glMultiTexCoord2f(GL_TEXTURE0, 1.0, 1.0);
                 glMultiTexCoord2f(GL_TEXTURE1, 1.0, 1.0);
                 glMultiTexCoord2f(GL_TEXTURE2, 1.0, 1.0);
-                glVertex3f(0.8, 1.4, 0.0);
+                glVertex3f(0.9, 1.4, 0.0);
 
                 glMultiTexCoord2f(GL_TEXTURE0, 0.0, 1.0);
                 glMultiTexCoord2f(GL_TEXTURE1, 0.0, 1.0);
                 glMultiTexCoord2f(GL_TEXTURE2, 0.0, 1.0);
-                glVertex3f(-0.8, 1.4, 0.0);
+                glVertex3f(-0.9, 1.4, 0.0);
             glEnd();
         glDisable(GL_BLEND);
     glEndList();
@@ -57,7 +58,7 @@ void Portal::setup_offscreen_rendering(GLuint fbo){
     glBindTexture(GL_TEXTURE_2D, hole_texture);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 256, 256, 0,
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size, size, 0,
                  GL_RGBA, GL_UNSIGNED_BYTE, 0);
     glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -65,7 +66,7 @@ void Portal::setup_offscreen_rendering(GLuint fbo){
     GLuint rboId;
     glGenRenderbuffers(1, &rboId);
     glBindRenderbuffer(GL_RENDERBUFFER, rboId);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 256, 256);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, size, size);
     glBindRenderbuffer(GL_RENDERBUFFER, 0);
 
     // bind a framebuffer object
@@ -89,7 +90,7 @@ void Portal::setup_offscreen_rendering(GLuint fbo){
 void Portal::make_texture(){
     if(other_portal->open){
         glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-        LevelManager::reshape(256,256);
+        LevelManager::reshape(size, size);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glLoadIdentity();
 
@@ -111,9 +112,6 @@ void Portal::make_texture(){
         //dynamic_cast<Character*>(*entityList->begin())->look();
         list<Entity*>::iterator p = entityList->end();
         for (p--; p!=entityList->begin(); p--){
-            if(Portal* tmp = dynamic_cast<Portal*>(*p)){
-                if(tmp->type==type) continue;
-            }
             glPushMatrix();
             (*p)->drawEntity();
             glPopMatrix();
