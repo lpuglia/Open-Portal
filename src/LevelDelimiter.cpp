@@ -1,4 +1,4 @@
-#include "../include/LevelDelimiter.h"
+#include "LevelDelimiter.h"
 
 LevelDelimiter::LevelDelimiter(vector3 pos, vector3 dir, vector3 up, vector3 vertex1, vector3 vertex2, vector3 vertex3,
                                 vector3 vertex4, string texture_path):Entity(pos, dir.normalize(), up)

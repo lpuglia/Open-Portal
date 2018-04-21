@@ -1,4 +1,4 @@
-#include "../include/Cube.h"
+#include "Cube.h"
 
 Cube::Cube(vector3 pos, vector3 dir, EntityList *entList)
     :Item(pos, dir, 5.0, vector3(0.0,0.0,0.0),entList)

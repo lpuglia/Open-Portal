@@ -1,4 +1,4 @@
-#include "../include/Entity.h"
+#include "Entity.h"
 
 Entity::Entity(vector3 pos, GLfloat angle){
     Entity::pos = pos;

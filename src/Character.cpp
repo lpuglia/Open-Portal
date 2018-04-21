@@ -1,4 +1,4 @@
-#include "../include/Character.h"
+#include "Character.h"
 
 Character::Character(vector3 pos, GLfloat mass, EntityList *entList)
          :Item(pos,vector3(0.0,0.0,-1.0), mass, vector3(0.0,0.0,0.0), entList)

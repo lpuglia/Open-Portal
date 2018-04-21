@@ -1,4 +1,4 @@
-#include "../include/Interface.h"
+#include "Interface.h"
 
 Interface::Interface(Portal* blue, Portal* orange) {
     Interface::blue = blue;

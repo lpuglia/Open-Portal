@@ -1,4 +1,4 @@
-#include "../include/Weapon.h"
+#include "Weapon.h"
 
 Weapon::Weapon(EntityList *entList)
     :Item(vector3(0.0,0.0,0.0),vector3(0.0,0.0,-1.0), entList)

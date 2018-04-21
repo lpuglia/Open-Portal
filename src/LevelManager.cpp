@@ -1,4 +1,4 @@
-#include "../include/LevelManager.h"
+#include "LevelManager.h"
 
 Character* LevelManager::he;
 Portal* LevelManager::blue;

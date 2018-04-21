@@ -1,4 +1,4 @@
-#include "../include/Item.h"
+#include "Item.h"
 
 Item::Item(vector3 pos, vector3 dir, GLfloat mass, vector3 v0, EntityList *entList):Entity(pos,dir,vector3(0.0,1.0,0.0)){
     Item::dir=dir;

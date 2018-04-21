@@ -1,4 +1,4 @@
-#include "../include/ViewManager.h"
+#include "ViewManager.h"
 
 ViewManager::ViewManager(vector3 pos, GLfloat peak, EntityList *entList)
             :Character(pos,80.0,entList)

@@ -6,7 +6,7 @@ file(GLOB op_src
     "src/*.cpp"
 )
 
-add_executable(open_portal main.cpp ${op_src}) 
+add_executable(open_portal ${op_src}) 
 
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)

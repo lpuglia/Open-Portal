@@ -1,6 +1,6 @@
-#include "../include/Portal.h"
-#include "../include/Character.h"
-#include "../include/LevelManager.h"
+#include "Portal.h"
+#include "Character.h"
+#include "LevelManager.h"
 
 Portal::Portal(vector3 pos, vector3 dir, GLboolean type, EntityList *entList)
         :Item(pos, dir, entList)

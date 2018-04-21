@@ -1,4 +1,4 @@
-#include "../include/PhysicsEngine.h"
+#include "PhysicsEngine.h"
 #include <stdio.h>
 
 PhysicsEngine::PhysicsEngine()
