@@ -21,6 +21,13 @@ void ViewManager::look(){
 void ViewManager::mouseMotion(int x, int y){
     int centerX = hWidth;
     int centerY = hHeight;
+
+    //this control skip the function if there are no change in the mouse position.
+    //it should be enough to avoid stalls in the viewer
+    if(x==centerX && y==centerY)
+        return;
+
+    //apparently too many warp-pointer call stuck the viewer on newer system, glut is old (surprise!)
     glutWarpPointer(centerX, centerY);
 
     dir = rotate_vector(dir, vector3(0.0, 1.0, 0.0), -((float)(x-centerX))*0.002);

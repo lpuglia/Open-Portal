@@ -24,11 +24,11 @@ LevelDelimiter::LevelDelimiter(vector3 pos, vector3 dir, vector3 up, vector3 ver
     length = sqrt(pow((vertex1[0]-vertex2[0]),2)+pow((vertex1[1]-vertex2[1]),2)+pow((vertex1[2]-vertex2[2]),2));
     height = sqrt(pow((vertex1[0]-vertex4[0]),2)+pow((vertex1[1]-vertex4[1]),2)+pow((vertex1[2]-vertex4[2]),2));
 
-    faceIndices={0,1,2,3};
-    /*faceIndices[0]=0;
+    //faceIndices={0,1,2,3};
+    faceIndices[0]=0;
     faceIndices[1]=1;
     faceIndices[2]=2;
-    faceIndices[3]=3;*/
+    faceIndices[3]=3;
 
     texture = LoadTextureRAW("texture/"+texture_path);
 
