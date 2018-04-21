@@ -30,7 +30,7 @@ LevelDelimiter::LevelDelimiter(vector3 pos, vector3 dir, vector3 up, vector3 ver
     faceIndices[2]=2;
     faceIndices[3]=3;
 
-    texture = LoadTextureRAW("texture/"+texture_path);
+    texture = LoadTextureRAW("../texture/"+texture_path);
 
 }
 

@@ -16,10 +16,10 @@ Weapon::Weapon(EntityList *entList)
     memcpy(gun5, gun5c, sizeof(GLfloat)*12);
     memcpy(texcoords, texcoordsc, sizeof(GLfloat)*8);
 
-    texgun1 = LoadTextureRAW("texture/gun1.png");
-    texgun2 = LoadTextureRAW("texture/gun2.png");
-    texgun3 = LoadTextureRAW("texture/gun3.png");
-    texgun5 = LoadTextureRGBA("texture/gun5.png");
+    texgun1 = LoadTextureRAW("../texture/gun1.png");
+    texgun2 = LoadTextureRAW("../texture/gun2.png");
+    texgun3 = LoadTextureRAW("../texture/gun3.png");
+    texgun5 = LoadTextureRGBA("../texture/gun5.png");
 
     listIndex = glGenLists(1);
     glNewList(listIndex, GL_COMPILE);

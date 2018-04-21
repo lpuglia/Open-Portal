@@ -36,7 +36,7 @@ Cube::Cube(vector3 pos, vector3 dir, EntityList *entList)
     init = false;
     floor_collide=false;
     wall_collide=false;
-    texture = LoadTextureRAW("texture/cube.png");
+    texture = LoadTextureRAW("../texture/cube.png");
     initialize();
 }
 

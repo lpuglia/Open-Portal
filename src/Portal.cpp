@@ -7,13 +7,13 @@ Portal::Portal(vector3 pos, vector3 dir, GLboolean type, EntityList *entList)
 {
     Portal::type=type;
     open = false;
-    mask = LoadTextureRGBA("texture/mask.png");
+    mask = LoadTextureRGBA("../texture/mask.png");
     if(type){
-        texture = LoadTextureRGBA("texture/bluewormhole.png");
-        texture_open = LoadTextureRGBA("texture/bluewormholeopen.png");
+        texture = LoadTextureRGBA("../texture/bluewormhole.png");
+        texture_open = LoadTextureRGBA("../texture/bluewormholeopen.png");
     }else{
-        texture = LoadTextureRGBA("texture/orangewormhole.png");
-        texture_open = LoadTextureRGBA("texture/orangewormholeopen.png");
+        texture = LoadTextureRGBA("../texture/orangewormhole.png");
+        texture_open = LoadTextureRGBA("../texture/orangewormholeopen.png");
     }
     param=GL_REPLACE;
     size=512; //px

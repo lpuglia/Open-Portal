@@ -6,10 +6,10 @@ Interface::Interface(Portal* blue, Portal* orange) {
     GLfloat uic[] = {-0.1,-0.1,-0.7, 0.1,-0.1,-0.7, 0.1,0.1,-0.7, -0.1,0.1,-0.7};
     memcpy(ui, uic, sizeof(GLfloat)*12);
 
-    uiblue = LoadTextureRGBA("texture/uiblue.png");
-    uiorange = LoadTextureRGBA("texture/uiorange.png");
-    uiblueorange = LoadTextureRGBA("texture/uiblueorange.png");
-    uivoid = LoadTextureRGBA("texture/uivoid.png");
+    uiblue = LoadTextureRGBA("../texture/uiblue.png");
+    uiorange = LoadTextureRGBA("../texture/uiorange.png");
+    uiblueorange = LoadTextureRGBA("../texture/uiblueorange.png");
+    uivoid = LoadTextureRGBA("../texture/uivoid.png");
 
     listIndex = glGenLists(1);
     glNewList(listIndex, GL_COMPILE);
