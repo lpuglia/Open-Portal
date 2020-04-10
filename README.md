@@ -1,7 +1,7 @@
 ## Open Portal
 
-This is the "Open Portal Engine", A Portal-like game engine written all in OpenGL.
-You are free to fork the github repository to improve it.
+This is the "Open Portal Engine", A Portal-like game engine written in classic OpenGL interface.
+Feel free to fork the repository to improve it.
 
 See the video:
 http://www.youtube.com/watch?v=tqqeUCzWcdQ
