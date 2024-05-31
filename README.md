@@ -4,7 +4,9 @@ This is the "Open Portal Engine", A Portal-like game engine written in classic O
 Feel free to fork the repository to improve it.
 
 See the video:
-http://www.youtube.com/watch?v=tqqeUCzWcdQ
+
+[![Preview](https://img.youtube.com/vi/tqqeUCzWcdQ/0.jpg)](http://www.youtube.com/watch?v=tqqeUCzWcdQ)
+
 
 ## Dependencies
 
